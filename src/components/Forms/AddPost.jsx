@@ -19,7 +19,7 @@ class AddPost extends React.Component {
 	}
 
 	handleSubmit(event) {
-		alert('An essay was submitted: ' + this.state.value);
+		alert('An post was submitted: ' + this.state.value);
 		event.preventDefault();
 	}
 
