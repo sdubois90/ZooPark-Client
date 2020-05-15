@@ -31,7 +31,7 @@ class FormSignup extends Component {
 			.signup(this.state)
 			.then((data) => {
 				this.context.setUser(data);
-				this.props.history.push('/');
+				this.props.history.push('/main');
 			})
 			.catch((error) => {
 				console.log(error);
@@ -49,8 +49,8 @@ class FormSignup extends Component {
 				<input type="email" id="email" name="email" />
 				<label htmlFor="password">Password</label>
 				<input type="password" id="password" name="password" />
-				<label htmlFor="picture">Picture</label>
-				<input type="file" id="picture" name="picture" />
+				{/* <label htmlFor="picture">Picture</label>
+				<input type="file" id="picture" name="picture" /> */}
 				<button>Submit</button>
 			</form>
 		);
