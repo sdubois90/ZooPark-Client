@@ -31,7 +31,7 @@ class FormSignup extends Component {
 			.signup(this.state)
 			.then((data) => {
 				this.context.setUser(data);
-				this.props.history.push('/');
+				this.props.history.push('/main');
 			})
 			.catch((error) => {
 				console.log(error);

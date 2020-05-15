@@ -8,7 +8,7 @@ class AddPost extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			text: 'Write something...'
+			text: ""
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -35,25 +35,25 @@ class AddPost extends React.Component {
 			  withCredentials: true,
 			})
 			.then((apiResponse) => {
-				console.log(apiResponse);
+				console.log(apiResponse.data);
 			})
 			.catch((apiError) => {
-				console.log(apiError);
+				console.log(apiError.message);
 			})
 		
 		
-			// alert('An post was submitted: ' + this.state.value);
+			// alert('A post was submitted: ' + this.state.value);
 		event.preventDefault();
 	}
 
 	render() {
 		return (
 			
-			<form onSubmit={this.handleSubmit}>
+			<form onChange={this.handleChange} onSubmit={this.handleSubmit}>
 			<pre>{JSON.stringify(this.state, null , 2)}</pre>
 				<div>
 					<label>Write Post</label>
-					<textarea onChange={this.handleChange} />
+					<textarea row="4"  placeholder="Write something..." />
 				</div>
 				<div>
 					<input type="submit" value="Submit" />
