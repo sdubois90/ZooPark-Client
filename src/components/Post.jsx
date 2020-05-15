@@ -7,6 +7,7 @@ class Post extends Component {
   constructor(props) {
     super(props)
     this.state = {
+
     }
   }
 
@@ -30,7 +31,7 @@ class Post extends Component {
 
     return (
       <div>
-        <AddPost />
+        <AddPost handlePost={this.props.handlePost} />
         <table>
           <tbody>
 
@@ -38,7 +39,7 @@ class Post extends Component {
               <tr key={index}>
 
                 <td className="content" colSpan="3">
-                  {post.text}{post.user}
+                  {post.text}{post.user.firstName}
                 </td>
               </tr>
 
