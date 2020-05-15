@@ -49,11 +49,11 @@ class AddPost extends React.Component {
 	render() {
 		return (
 			
-			<form onSubmit={this.handleSubmit}>
+			<form onChange={this.handleChange} onSubmit={this.handleSubmit}>
 			<pre>{JSON.stringify(this.state, null , 2)}</pre>
 				<div>
 					<label>Write Post</label>
-					<textarea onChange={this.handleChange} />
+					<textarea />
 				</div>
 				<div>
 					<input type="submit" value="Submit" />
