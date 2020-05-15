@@ -31,11 +31,13 @@ class AddPost extends React.Component {
 		// 	})
 
 			axios
-			.post("http://localhost:4000/api/posts/" , this.state, {
+			.post("http://localhost:4000/api/posts/", this.state, {
 			  withCredentials: true,
 			})
-			.then((apiResponse) => {
-				console.log(apiResponse.data);
+				.then((apiResponse) => {
+				// execute a callback and passing it the apiResponse which is the new Post
+					console.log("FIRST STEP", apiResponse.data);
+					this.props.handlePost(apiResponse.data)
 			})
 			.catch((apiError) => {
 				console.log(apiError.message);

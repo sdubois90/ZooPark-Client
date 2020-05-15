@@ -27,12 +27,13 @@ class Main extends React.Component {
       })
   }
 
-  componentDidUpdate(prevPops, prevState) {
-    if (prevState.posts !== this.state.props) {
-      console.log("updated")
-    } else {
-      return null;
-    }
+
+  // the corresponding method which will take an argument that corresponds to the value of the new post
+  // this method will set the state
+
+  handlePost = (responseFromAddPost) => {
+    console.log("SECOND STEP")
+    this.setState({ posts: [...this.state.posts, responseFromAddPost] })
   }
 
 
@@ -46,7 +47,7 @@ class Main extends React.Component {
           <h2>Main Feed</h2>
           {/* <AddPost /> */}
 
-          <Post posts={this.state.posts} />
+          <Post handlePost={this.handlePost} posts={this.state.posts} />
         </div>
         <div className="group-members">
           <h2>Group Members</h2>
