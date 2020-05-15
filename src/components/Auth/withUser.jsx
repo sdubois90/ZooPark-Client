@@ -26,7 +26,7 @@ export const withUser = (ComponentToPassUserContextTo) => {
     return (
       <UserContext.Consumer>
         {(context) => (
-          <ComponentToPassUserContextTo {...props} context={context} />
+          <ComponentToPassUserContextTo {...props} context={context} /> // all the props from the parent + the context
         )}
       </UserContext.Consumer>
     );
