@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import UserContext from '../Auth/UserContext';
-import apiHandler from '../../api/apiHandler';
+import React from 'react';
+// import { withRouter } from 'react-router-dom';
+// import UserContext from '../Auth/UserContext';
+// import apiHandler from '../../api/apiHandler';
 
 class AddPost extends React.Component {
 	constructor(props) {
@@ -19,7 +19,7 @@ class AddPost extends React.Component {
 	}
 
 	handleSubmit(event) {
-		alert('An post was submitted: ' + this.state.value);
+		alert('A post was submitted: ' + this.state.value);
 		event.preventDefault();
 	}
 
