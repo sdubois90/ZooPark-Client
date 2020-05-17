@@ -39,7 +39,7 @@ class Post extends Component {
               <tr key={index}>
 
                 <td className="content" colSpan="3">
-                  {post.text}{post.user.firstName}
+                  "{post.text}" posted by <i>{post.user.firstName}</i>
                 </td>
               </tr>
 

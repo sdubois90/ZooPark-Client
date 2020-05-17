@@ -2,8 +2,10 @@ import React from "react";
 import Post from "../components/Post";
 import User from "../components/User";
 import AddPost from "../components/Forms/AddPost";
-import "../styles/Main.css"
-import axios from "axios"
+import "../styles/Main.css";
+import axios from "axios";
+import Profile from "../components/Profile";
+import apiHandler from "../api/apiHandler";
 
 class Main extends React.Component {
   constructor(props) {
@@ -25,6 +27,16 @@ class Main extends React.Component {
       .catch((apiError) => {
         console.log(apiError);
       })
+  //   apiHandler
+  //     .getItems()
+  //     .then((apiResponse) => {
+  //       console.log(apiResponse.data)
+  //       this.setState({ posts: apiResponse.data })
+  //     })
+  //     .catch((apiError) => {
+  //       console.log(apiError)
+  //     })
+    
   }
 
 
@@ -42,6 +54,7 @@ class Main extends React.Component {
       <div className="main-container">
         <div className="profile">
           <h2>Profile</h2>
+          <Profile />
         </div>
         <div className="mainfeed">
           <h2>Main Feed</h2>
