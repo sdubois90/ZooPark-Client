@@ -53,16 +53,8 @@ class Main extends React.Component {
     return (
       <div className="main-container">
         <div className="profile">
-<<<<<<< HEAD
-          <h2>Current user info</h2>
-          
+          <h2>Current user info</h2> 
           <CurrentUserFrame/>
-          
-          
-=======
-          <h2>Profile</h2>
-          <Profile />
->>>>>>> master
         </div>
 
         <div className="mainfeed">
