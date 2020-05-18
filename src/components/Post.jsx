@@ -32,14 +32,14 @@ class Post extends Component {
     return (
       <div>
         <AddPost handlePost={this.props.handlePost} />
-        <table>
+        <table style={{ borderCollapse: 'separate', borderSpacing: '15px 15px' }}>
           <tbody>
-
             {this.props.posts.map((post, index) => (
-              <tr key={index}>
+              <tr className="one-post" key={index}>
 
                 <td className="content" colSpan="3">
-                  {post.text}{post.user.firstName}
+                  {/* <img src={post.user.picture} alt="" /> */}
+                  "{post.text}" posted by <i><b>{post.user.firstName}</b></i>
                 </td>
               </tr>
 
