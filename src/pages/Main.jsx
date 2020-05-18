@@ -27,6 +27,16 @@ class Main extends React.Component {
       .catch((apiError) => {
         console.log(apiError);
       })
+  //   apiHandler
+  //     .getItems()
+  //     .then((apiResponse) => {
+  //       console.log(apiResponse.data)
+  //       this.setState({ posts: apiResponse.data })
+  //     })
+  //     .catch((apiError) => {
+  //       console.log(apiError)
+  //     })
+    
   }
 
 
@@ -43,18 +53,23 @@ class Main extends React.Component {
     return (
       <div className="main-container">
         <div className="profile">
+<<<<<<< HEAD
           <h2>Current user info</h2>
           
           <CurrentUserFrame/>
           
           
+=======
+          <h2>Profile</h2>
+          <Profile />
+>>>>>>> master
         </div>
+
         <div className="mainfeed">
           <h2>Main Feed</h2>
-          {/* <AddPost /> */}
-
           <Post handlePost={this.handlePost} posts={this.state.posts} />
         </div>
+        
         <div className="group-members">
           <h2>Group Members</h2>
           <User />

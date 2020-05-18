@@ -24,38 +24,40 @@ class AddPost extends React.Component {
 		// apiHandler
 		// .createItems(this.state)
 		// 	.then((apiResponse) => {
-		// 		console.log(apiResponse.data);
+		// 		console.log("FIRST STEP", apiResponse.data);
+		// 		this.props.handlePost(apiResponse.data)
 		// 	})
 		// 	.catch((apiError) => {
 		// 		console.log(apiError);
 		// 	})
 
-			axios
+		axios
 			.post("http://localhost:4000/api/posts/", this.state, {
-			  withCredentials: true,
+				withCredentials: true,
 			})
-				.then((apiResponse) => {
+			.then((apiResponse) => {
 				// execute a callback and passing it the apiResponse which is the new Post
-					console.log("FIRST STEP", apiResponse.data);
-					this.props.handlePost(apiResponse.data)
+				console.log("FIRST STEP", apiResponse.data);
+				this.props.handlePost(apiResponse.data);
+				this.setState({ text: "" });
 			})
 			.catch((apiError) => {
 				console.log(apiError.message);
 			})
-		
-		
-			// alert('A post was submitted: ' + this.state.value);
+
+
+		// alert('A post was submitted: ' + this.state.value);
 		event.preventDefault();
 	}
 
 	render() {
 		return (
-			
+
 			<form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-			<pre>{JSON.stringify(this.state, null , 2)}</pre>
+				<pre>{JSON.stringify(this.state, null, 2)}</pre>
 				<div>
 					<label>Write Post</label>
-					<textarea row="4"  placeholder="Write something..." />
+					<textarea row="4" onChange={this.handleChange} value={this.state.text} placeholder="Write something..." />
 				</div>
 				<div>
 					<input type="submit" value="Submit" />

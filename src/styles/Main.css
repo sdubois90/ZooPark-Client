@@ -15,4 +15,20 @@
 
 .group-members {
     border: 1px solid gray;
+    border: 1px solid red;
+    width:25%;
+    text-overflow: ellipsis;
+}
+
+.mainfeed {
+    border: 1px solid red;
+    width:50%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.group-members {
+    border: 1px solid red;
+    width:25%;
 }

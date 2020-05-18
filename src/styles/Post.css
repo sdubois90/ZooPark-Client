@@ -1,11 +1,22 @@
 
-  
+  .one-post {
+    box-shadow: 0px 1px 5px rgb(0, 0, 0, 0.2);
+    border-radius:3px;
+    width:80%;
+    background-color: rgba(215, 243, 245, 0.384);
+  }
+
+  .content {
+    padding:10px;
+    text-align:center;
+  }
+
   .pic {
-    height: 50px;
-    width: 50px;
+    width: 100%;
+    height: auto;
   }
   
-  .name {
+  /* .name {
     width: 400px;
-  }
+  } */
   
