@@ -1,0 +1,25 @@
+.wrapper {
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;  
+    padding: 5px;
+    border: 1px solid gray;
+  }
+
+  .pic{
+    margin: auto;
+    border: 1px solid gray;
+    height: 100px;
+    width: 200px;
+  }
+
+
+.edit-button {
+  margin: 5px 25% 0 25%;
+  background-color: lightgray;
+ 
+}
+

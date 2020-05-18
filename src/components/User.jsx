@@ -1,49 +1,49 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import axios from "axios";
+import "../styles/User.css";
 
 class User extends Component {
+  state = {
+    users: [],
+  };
 
-    state = {
-        users: [],
-      };
+  componentDidMount() {
+    axios
+      .get("http://localhost:4000/api/users")
+      .then((apiResponse) => {
+        console.log(apiResponse);
+        this.setState({ users: apiResponse.data });
+      })
+      .catch((apiError) => {
+        console.log(apiError);
+      });
+  }
 
-      componentDidMount() {
-     
-        axios
-        .get("http://localhost:4000/api/users")
-        .then((apiResponse) => {
-            console.log(apiResponse);
-            this.setState({ users: apiResponse.data});
-        })
-        .catch((apiError) => {
-            console.log(apiError);
-        })
-    }
+  render() {
+    return (
+      <div className="user-wrapper">
 
-    render() {
-        return (
-          <div>
-    
-     <table>
-            <tbody>
+        {this.state.users.map((user, index) => (
+
+          <div className="userinfo" key={index}>
+
+            <div className="user-pic">
+             
+              <img              
+                src={user.picture}
+                alt={user.firstName}
+              />
+              </div>
+
+              <div className="usernames">
+              {user.firstName} {user.lastName}</div>
             
-            {this.state.users.map((user, index) => (
-              <tr key={index}>  
-                
-                <td className="content" colSpan="3">
-                {user.firstName} {user._id}
-                </td>
-              </tr>
-              
-              ))}
-    
-              
-              </tbody>
-            </table>
-    
           
+            <div className="group">Group: cats, dogs {user.group}</div>
           </div>
-        );
-      }
-    }
-export default User
+        ))}
+      </div>
+    );
+  }
+}
+export default User;

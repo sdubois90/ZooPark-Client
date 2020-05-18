@@ -2,10 +2,10 @@ import React from "react";
 import Post from "../components/Post";
 import User from "../components/User";
 import AddPost from "../components/Forms/AddPost";
+import CurrentUserInfo from "../components/CurrentUserInfo.jsx";
 import "../styles/Main.css";
 import axios from "axios";
-import Profile from "../components/Profile";
-import apiHandler from "../api/apiHandler";
+import CurrentUserFrame from "../components/CurrentUserFrame";
 
 class Main extends React.Component {
   constructor(props) {
@@ -53,8 +53,16 @@ class Main extends React.Component {
     return (
       <div className="main-container">
         <div className="profile">
+<<<<<<< HEAD
+          <h2>Current user info</h2>
+          
+          <CurrentUserFrame/>
+          
+          
+=======
           <h2>Profile</h2>
           <Profile />
+>>>>>>> master
         </div>
 
         <div className="mainfeed">
