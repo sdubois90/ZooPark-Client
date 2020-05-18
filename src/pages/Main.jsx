@@ -2,8 +2,10 @@ import React from "react";
 import Post from "../components/Post";
 import User from "../components/User";
 import AddPost from "../components/Forms/AddPost";
-import "../styles/Main.css"
-import axios from "axios"
+import CurrentUserInfo from "../components/CurrentUserInfo.jsx";
+import "../styles/Main.css";
+import axios from "axios";
+import CurrentUserFrame from "../components/CurrentUserFrame";
 
 class Main extends React.Component {
   constructor(props) {
@@ -41,7 +43,11 @@ class Main extends React.Component {
     return (
       <div className="main-container">
         <div className="profile">
-          <h2>Profile</h2>
+          <h2>Current user info</h2>
+          
+          <CurrentUserFrame/>
+          
+          
         </div>
         <div className="mainfeed">
           <h2>Main Feed</h2>
