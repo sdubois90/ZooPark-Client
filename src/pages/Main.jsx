@@ -56,12 +56,12 @@ class Main extends React.Component {
           <h2>Profile</h2>
           <Profile />
         </div>
+
         <div className="mainfeed">
           <h2>Main Feed</h2>
-          {/* <AddPost /> */}
-
           <Post handlePost={this.handlePost} posts={this.state.posts} />
         </div>
+        
         <div className="group-members">
           <h2>Group Members</h2>
           <User />
