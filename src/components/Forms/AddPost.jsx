@@ -11,6 +11,7 @@ class AddPost extends React.Component {
 			text: "",
 			picture: "",
 			imagePreview: "",
+			videoPreview: "",
 		};
 		// USING A REF HERE TO TARGET ANOTHER ELEMENT LIKE A "document.targetElementById" IN VANILLA JS
 		this.myFirstRef = React.createRef();
@@ -28,7 +29,13 @@ class AddPost extends React.Component {
 			// on ajoute le preview de l'image avant submitting
 			if (typeof value === 'object') {
 				const objectURL = URL.createObjectURL(event.target.files[0])
-				this.setState({ imagePreview: objectURL })
+				// Check si c'ets une image/qqchose ou video/qqchose, puis remet l'autre type de preview à 0
+				if (value && value['type'].split('/')[0] === 'image') {
+					this.setState({ imagePreview: objectURL, videoPreview: "" })
+				} else {
+					this.setState({ videoPreview: objectURL, imagePreview: "" })
+				}
+
 			} else {
 				// Important to do an "if else" here (at least an "if"), otherwise if we select an image, then open it again and then just cancel instead of choosing an image, it's gonna break
 				this.setState({ imagePreview: "" })
@@ -104,6 +111,11 @@ class AddPost extends React.Component {
 					{/* Preview of the image with a guard to display it only if there is an image chosen */}
 					{this.state.imagePreview && <p style={{ textAlign: "center" }}>
 						Preview: <img style={{ height: "100px", display: "block", margin: "0 auto" }} src={this.state.imagePreview} alt="" />
+					</p>}
+					{this.state.videoPreview && <p style={{ textAlign: "center" }}>
+						Preview: <video style={{ height: "200px", display: "block", margin: "0 auto" }} controls>
+							<source src={this.state.videoPreview} />
+						</video>
 					</p>}
 				</div>
 
