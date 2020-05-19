@@ -30,25 +30,25 @@ class Post extends Component {
   render() {
 
     return (
-      <div>
-        <AddPost handlePost={this.props.handlePost} />
-        <table style={{ borderCollapse: 'separate', borderSpacing: '15px 15px' }}>
+      <div style={{ width: "100%", padding: "15px" }}>
+        <AddPost handlePost={this.props.handlePost} posts={this.props.posts} />
+        <table style={{ borderCollapse: 'separate', borderSpacing: '15px 15px', width: '100%' }}>
           <tbody>
-            {this.props.posts.map((post, index) => (
+            {/* Reversing the state with a shallow copy first otherwise it acts weird,
+                as reverse() directly mutates the array */}
+            {[...this.props.posts].reverse().map((post, index) => (
               <tr className="one-post" key={index}>
 
                 <td className="content" colSpan="3">
-                  {/* <img src={post.user.picture} alt="" /> */}
-                  "{post.text}" posted by <i><b>{post.user.firstName}</b></i>
+
+                  <img style={{ display: "block", margin: "0 auto" }} src={post.picture} alt="" accept="video/*" /><br />{post.text}<br />
+                 posted by <i><b>{post.user.firstName}</b></i><img className="post-user-picture" src={post.user.picture} alt="" />
                 </td>
               </tr>
-
             ))}
-
-
+            
           </tbody>
         </table>
-
 
       </div>
     );
