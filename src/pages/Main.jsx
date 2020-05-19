@@ -40,8 +40,9 @@ class Main extends React.Component {
 
 	// updatePost = (updatedUser) => {
 	// 	const updatedUsers = this.state.posts.map(post => {
-	// 		if (post.users._id === updatedUser._id) {
-	// 			return updatedUser
+	// 		if (post.user._id === updatedUser._id) {
+				//post.user.firstName = updatedUser.firstName
+				// 			return post
 	// 		} else {
 	// 			return post
 	// 		}
@@ -86,6 +87,7 @@ class Main extends React.Component {
         <div className="group-members">
           <h2>Group Members</h2>
           <User/>
+		  {/* here you pass the posts as props */}
         </div>
 
       </div>
