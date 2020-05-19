@@ -6,39 +6,39 @@ class LikeButton extends React.Component {
 
     super(props);
     this.state = {
-        numberOfLikes: 0,
-        updated: false
+        // numberOfLikes: 0,
+        // updated: false
     };
 
   }
 
-  updateLikes = () => {
+  // updateLikes = () => {
 
-    if(!this.state.updated) {
-      this.setState((prevState, props) => {
-        return {
-            numberOfLikes: prevState.numberOfLikes + 1,
-          updated: true
-        };
-      });
+  //   if(!this.state.updated) {
+  //     this.setState((prevState, props) => {
+  //       return {
+  //           numberOfLikes: prevState.numberOfLikes + 1,
+  //         updated: true
+  //       };
+  //     });
 
-    } else {
+  //   } else {
 
-      this.setState((prevState, props) => {
-        return {
-            numberOfLikes: prevState.numberOfLikes - 1,
-          updated: false
-        };
-      });
+  //     this.setState((prevState, props) => {
+  //       return {
+  //           numberOfLikes: prevState.numberOfLikes - 1,
+  //         updated: false
+  //       };
+  //     });
 
-    }
-  }
+  //   }
+  // }
 
   render(){
 
     return(
       <div>
-        <button onClick={this.updateLikes}>{this.state.numberOfLikes} Likes</button>
+        <button onClick={this.props.updateLikes}>{this.props.number} Likes</button>
       </div>
     );
   }

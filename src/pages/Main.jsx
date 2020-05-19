@@ -46,8 +46,9 @@ class Main extends React.Component {
 
 	// updatePost = (updatedUser) => {
 	// 	const updatedUsers = this.state.posts.map(post => {
-	// 		if (post.users._id === updatedUser._id) {
-	// 			return updatedUser
+	// 		if (post.user._id === updatedUser._id) {
+	//post.user.firstName = updatedUser.firstName
+	// 			return post
 	// 		} else {
 	// 			return post
 	// 		}
@@ -67,7 +68,7 @@ class Main extends React.Component {
 			.catch((apiError) => {
 				console.log(apiError);
 			});
-	}
+	};
 	// the corresponding method which will take an argument that corresponds to the value of the new post
 	// this method will set the state
 
@@ -97,7 +98,6 @@ class Main extends React.Component {
 					<h2>Group Members</h2>
 					<User />
 				</div>
-
 			</div>
 		);
 	}
