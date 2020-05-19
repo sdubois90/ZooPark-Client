@@ -21,6 +21,18 @@ class User extends Component {
 
 // componentDidUpdate inside which you do another axios request as in componentDidMount
 
+// componentDidUpdate() {
+//   axios
+//     .get("http://localhost:4000/api/users")
+//     .then((apiResponse) => {
+//       console.log(apiResponse);
+//       this.setState({ users: apiResponse.data });
+//     })
+//     .catch((apiError) => {
+//       console.log(apiError);
+//     });
+// }
+
   render() {
     return (
       <div className="user-wrapper">
