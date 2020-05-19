@@ -30,9 +30,10 @@ class CurrentUserInfo extends Component {
     return (
       <div className="wrapper">
         <table className="userinfo">
+        <tbody>
           <tr>
             <td className="pic">
-              <img src={this.state.currentUser.picture} alt="user_pic" />
+              <img src="/media/plant.svg" alt="user_pic" />
             </td>
           </tr>
           <tr>
@@ -61,7 +62,7 @@ class CurrentUserInfo extends Component {
             </td>
           </tr>
           <tr>
-            <td className="about">Blah blah blah{this.state.currentUser.description}</td>
+            <td className="about">{this.state.currentUser.description}</td>
           </tr>
           <tr>
           <td className="label">
@@ -69,15 +70,16 @@ class CurrentUserInfo extends Component {
             </td>
           </tr>
           <tr >
-            <td className="interests">Cats{this.state.currentUser.group}</td>
+            <td className="interests">{this.state.currentUser.group}</td>
           </tr>
           <tr>
             <td>
               <button className="edit-button" onClick={this.handleEdit}>
                 Edit my profile
               </button>
-            </td>
+            </td>            
           </tr>
+          </tbody>
         </table>
       </div>
     );
