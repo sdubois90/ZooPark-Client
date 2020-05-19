@@ -19,6 +19,8 @@ class User extends Component {
       });
   }
 
+// componentDidUpdate inside which you do another axios request as in componentDidMount
+
   render() {
     return (
       <div className="user-wrapper">
