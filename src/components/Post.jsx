@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "../styles/Post.css";
-import AddPost from "./Forms/AddPost"
+import AddPost from "./Forms/AddPost";
+import SinglePost from "./SinglePost";
+
+import LikeButton from "./LikeButton";
 
 class Post extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-
-    }
-  }
 
   //   componentDidMount() {
 
@@ -28,28 +25,24 @@ class Post extends Component {
 
 
   render() {
-
     return (
-      <div>
-        <AddPost handlePost={this.props.handlePost} />
-        <table style={{ borderCollapse: 'separate', borderSpacing: '15px 15px' }}>
+      <div style={{ width: "100%", padding: "15px" }}>
+        <AddPost handlePost={this.props.handlePost} posts={this.props.posts} />
+        <table
+          style={{
+            borderCollapse: "separate",
+            borderSpacing: "15px 15px",
+            width: "100%",
+          }}
+        >
           <tbody>
-            {this.props.posts.map((post, index) => (
-              <tr className="one-post" key={index}>
-
-                <td className="content" colSpan="3">
-                  {/* <img src={post.user.picture} alt="" /> */}
-                  "{post.text}" posted by <i><b>{post.user.firstName}</b></i>
-                </td>
-              </tr>
-
+            {/* Reversing the state with a shallow copy first otherwise it acts weird,
+                as reverse() directly mutates the array */}
+            {[...this.props.posts].reverse().map((post, index) => (
+              <SinglePost post={post} index={index} key={index}/>
             ))}
-
-
           </tbody>
         </table>
-
-
       </div>
     );
   }

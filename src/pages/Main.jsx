@@ -38,6 +38,31 @@ class Main extends React.Component {
 		//     })
 	}
 
+	// updatePost = (updatedUser) => {
+	// 	const updatedUsers = this.state.posts.map(post => {
+	// 		if (post.user._id === updatedUser._id) {
+	//post.user.firstName = updatedUser.firstName
+	// 			return post
+	// 		} else {
+	// 			return post
+	// 		}
+	// 	})
+
+	// 	this.setState({ posts: updatedUsers });
+
+	updatePost = () => {
+		axios
+			.get('http://localhost:4000/api/posts', {
+				withCredentials: true
+			})
+			.then((apiResponse) => {
+				console.log(apiResponse);
+				this.setState({ posts: apiResponse.data });
+			})
+			.catch((apiError) => {
+				console.log(apiError);
+			});
+	};
 	// the corresponding method which will take an argument that corresponds to the value of the new post
 	// this method will set the state
 
@@ -51,12 +76,17 @@ class Main extends React.Component {
 			<div className="main-container">
 				<div className="profile">
 					<h2>Current user info</h2>
-					<CurrentUserFrame />
+					<CurrentUserFrame updatePost={this.updatePost} />
 				</div>
 
 				<div className="mainfeed">
 					<h2>Main Feed</h2>
 					<Post handlePost={this.handlePost} posts={this.state.posts} />
+				</div>
+
+				<div className="group-members">
+					<h2>Group Members</h2>
+					<User />
 				</div>
 
 				<div className="group-members">

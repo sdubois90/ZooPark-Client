@@ -1,19 +1,57 @@
 import React from "react";
 import "./../../styles/CurrentUserEditForm.css";
+import UserContext from "../Auth/UserContext";
+import axios from 'axios';
 
 class CurrentUserEditForm extends React.Component {
+
+  static contextType = UserContext;
+
+  state = {
+    lastName:this.context.user.lastName,
+    firstName:this.context.user.firstName,
+    email:this.context.user.email,
+    description:this.context.description,
+    group:"cats",
+    // userInfo:this.context.user,
+  }
+
   handleChange = (event) => {
     console.log(event.target.name);
+    this.setState({ [event.target.name]: event.target.value });
   };
+
+
   handleForm = (event) => {
     event.preventDefault();
-    console.log("I am clicked");
+
+    axios.patch('http://localhost:4000/api/users/' + this.context.user._id,
+    {
+      lastName:this.state.lastName, 
+      firstName:this.state.firstName, 
+      email:this.state.email,
+      description:this.state.description,
+      group:this.state.group
+    },
+    {withCredentials:true})
+    .then((apiResult) => {
+      console.log("updated user",apiResult);
+      this.context.setUser(apiResult.data)
+      this.props.hideEditForm();
+      this.props.updatePost(apiResult.data);
+    })
+    .catch((apiError) => {
+      console.log(apiError)
+    });
   };
+
+
   render() {
+    console.log("THE USER IN CONTEXT", this.context.user)
     return (
       <form onChange={this.handleChange} onSubmit={this.handleForm}>
-        <div className="wrapper">
-          <img className="pic" src="" alt="user_pic" />
+        <div className="wrapper">Edit My Info
+          <img className="pic" src="/media/plant.svg" alt="user_pic" />
 
           <div>
             <p className="label">
@@ -24,7 +62,7 @@ class CurrentUserEditForm extends React.Component {
                 type="text"
                 id="firstName"
                 name="firstName"
-                // value={this.props.currentUser.firstName}
+                defaultValue={this.context.user.firstName}
               ></input>
             </p>
           </div>
@@ -38,7 +76,7 @@ class CurrentUserEditForm extends React.Component {
                 type="text"
                 id="lastName"
                 name="lastName"
-                // value={this.props.currentUser.lastName}
+                defaultValue={this.context.user.lastName}
                 ></input>
             </p>
           </div>
@@ -52,7 +90,7 @@ class CurrentUserEditForm extends React.Component {
                 type="text"
                 id="email"
                 name="email"
-                // value={this.props.currentUser.email}
+                defaultValue={this.context.user.email}
                 ></input>
             </p>
           </div>
@@ -66,7 +104,7 @@ class CurrentUserEditForm extends React.Component {
                 type="text"
                 id="description"
                 name="description"
-                // value={this.props.currentUser.description}
+                defaultValue={this.context.user.description}
                 ></input>
             </p>
           </div>
@@ -76,7 +114,13 @@ class CurrentUserEditForm extends React.Component {
               <label htmlFor="group">My interests</label>
             </p>
             <p>
-              <select id="group" name="group">
+              <select 
+              name="group"
+              id="group" 
+              onChange={this.handleChange}
+              value={this.context.user.group}
+              >
+              
                 <option value="cats">Cats</option>
                 <option value="dogs">Dogs</option>
                 <option value="horses">Horses</option>
@@ -92,116 +136,3 @@ class CurrentUserEditForm extends React.Component {
   }
 }
 export default CurrentUserEditForm;
-
-// import React, { Component } from 'react';
-// import axios from "axios";
-
-// export class CurrentUserEditForm extends Component {
-//     state = {
-//         picture: this.props.currentUser.picture,
-//         firstName: this.props.currentUser.firstName,
-//         lastName: this.props.currentUser.lastName,
-//         email: this.props.currentUser.email,
-//         description: this.props.currentUser.description,
-//         group: this.props.currentUser.group,
-//         id: this.props.currentUser._id,
-//     };
-
-//     handleChange = (event) => {
-//         this.setState({ [event.target.name]: event.tarbget.value});
-//     }
-
-//     handleForm = (event) => {
-//         event.prevenDefault();
-
-// axios
-// .patch("http://localhost:4000/api/users/" + this.state.id, {
-//         withCredentials: true,
-//         picture: this.state.picture,
-//         firstName: this.state.firstName,
-//         lastName: this.state.lastName,
-//         email: this.state.email,
-//         description: this.state.description,
-//         group: this.state.group,
-//       })
-//       .then((apiResponse) => {
-//         console.log(apiResponse.data);
-//         this.props.updateCurrentUser(apiResponse.data);
-
-//       })
-//       .catch((apiError) => {
-//         console.log(apiError.response.data.message);
-//       });
-//   };
-
-//     render() {
-
-//         return (
-
-// <form onChange={this.handleChange} onSubmit={this.handleForm}>
-
-//     <div className="wrapper">
-//     <label htmlFor="firstName">First Name</label>
-//     <input
-//     type="firstName"
-//     id="firstName"
-//     name="firstName"
-//     defaultValue={this.props.currentUser.firstName}
-//     />
-//     </div>
-
-// <div>
-// <label htmlFor="lastName">Last Name</label>
-//     <input
-//     type="lastName"
-//     id="lastName"
-//     name="lastName"
-//     defaultValue={this.props.currentUser.lastName}
-//     />
-// </div>
-
-// <div>
-// <label htmlFor="email">Email</label>
-//     <input
-//     type="email"
-//     id="email"
-//     name="email"
-//     defaultValue={this.props.currentUser.email}
-//     />
-// </div>
-
-// <div>
-// <label htmlFor="description">Email</label>
-//     <input
-//     type="description"
-//     id="description"
-//     name="description"
-//     defaultValue={this.props.currentUser.description}
-//     />
-// </div>
-
-// <div>
-// <label htmlFor="group">Email</label>
-
-// <select
-//     name="group"
-//     id="group"
-//     type="group"
-//     onChange={this.handleChange}
-//     value={this.props.currentUser.group}
-//     >
-//     <option value="cats">Cats</option>
-//     <option value="dogs">Dogs</option>
-//     <option value="horses">Horses</option>
-//     <option value="snakes">Snakes</option>
-// </select>
-// </div>
-
-// <button>Edit my profile</button>
-// </form>
-
-//         )
-//     }
-// }
-
-// export default CurrentUserEditForm

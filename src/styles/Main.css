@@ -9,12 +9,7 @@
     border: 1px solid gray;
 }
 
-.mainfeed {
-    border: 1px solid gray;
-}
-
 .group-members {
-    border: 1px solid gray;
     border: 1px solid red;
     width:25%;
     text-overflow: ellipsis;
