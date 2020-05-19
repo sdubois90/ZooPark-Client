@@ -58,15 +58,14 @@ class Main extends React.Component {
 					<h2>Main Feed</h2>
 					<Post handlePost={this.handlePost} posts={this.state.posts} />
 				</div>
-        
-        <div className="group-members">
-          <h2>Group Members</h2>
-          <User />
-        </div>
 
-      </div>
-    );
-  }
+				<div className="group-members">
+					<h2>Group Members</h2>
+					<User />
+				</div>
+			</div>
+		);
+	}
 }
 
 export default Main;

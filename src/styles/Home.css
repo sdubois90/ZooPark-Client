@@ -1,0 +1,14 @@
+.home-container {
+	background: url("/images/adorable-blur-breed-close-up-406014.jpg")no-repeat center center;
+	background-size: cover;
+}
+
+#main-title {
+	font-size: 10rem;
+}
+
+#sub-title {
+	font-size: 2.75rem;
+	font-weight: 600;
+	margin-bottom: 0.75rem;
+}

@@ -40,19 +40,39 @@ class FormSignup extends Component {
 
 	render() {
 		return (
-			<form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-				<label htmlFor="firstName">First name</label>
-				<input type="firstName" id="firstName" name="firstName" />
-				<label htmlFor="lastName">Last name</label>
-				<input type="lastName" id="lastName" name="lastName" />
-				<label htmlFor="email">Email</label>
-				<input type="email" id="email" name="email" />
-				<label htmlFor="password">Password</label>
-				<input type="password" id="password" name="password" />
-				{/* <label htmlFor="picture">Picture</label>
+			<div className="home-container" style={{ height: 'calc(100vh - 70px)' }}>
+				<div class="ui center aligned container">
+					<p id="sub-title">Howdy stranger! How are you today?</p>
+				</div>
+				<form class="ui form text container segment" onChange={this.handleChange} onSubmit={this.handleSubmit}>
+					<div class="required field">
+						<label htmlFor="firstName">First name</label>
+						<input type="text" id="firstName" name="firstName" placeholder="First Name" />
+					</div>
+					<div class="required field">
+						<label htmlFor="lastName">Last name</label>
+						<input type="text" id="lastName" name="lastName" placeholder="Last Name" />
+					</div>
+					<div class="required field">
+						<label htmlFor="email">Email</label>
+						<input type="email" id="email" name="email" placeholder="meow@schmoe.com" />
+					</div>
+					<div class="required field">
+						<label htmlFor="password">Password</label>
+						<input
+							type="password"
+							id="password"
+							name="password"
+							placeholder="Shhh...don't tell it to anyone!"
+						/>
+					</div>
+					{/* <label htmlFor="picture">Picture</label>
 				<input type="file" id="picture" name="picture" /> */}
-				<button>Submit</button>
-			</form>
+					<button class="ui button" type="submit">
+						Submit
+					</button>
+				</form>
+			</div>
 		);
 	}
 }
