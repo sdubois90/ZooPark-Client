@@ -39,7 +39,7 @@ class Post extends Component {
             {/* Reversing the state with a shallow copy first otherwise it acts weird,
                 as reverse() directly mutates the array */}
             {[...this.props.posts].reverse().map((post, index) => (
-              <SinglePost post={post} index={index} key={index}/>
+              <SinglePost post={post} key={index} updatePost={this.props.updatePost} />
             ))}
           </tbody>
         </table>

@@ -9,9 +9,10 @@ class AddPost extends React.Component {
 		super(props);
 		this.state = {
 			text: "",
-			picture: "",
+			file: "",
 			imagePreview: "",
 			videoPreview: "",
+			textError: "",
 		};
 		// USING A REF HERE TO TARGET ANOTHER ELEMENT LIKE A "document.targetElementById" IN VANILLA JS
 		this.myFirstRef = React.createRef();
@@ -61,12 +62,17 @@ class AddPost extends React.Component {
 		// 	})
 
 		if (!this.state.text) {
-			alert("Required: Please add some text")
+			this.setState({ textError: "Please insert some text" })
 		}
 
 		const formData = new FormData();
 		formData.append("text", this.state.text);
-		formData.append("picture", this.state.picture);
+		formData.append("picture", this.state.file);
+		// formData.append("video", this.state.video);
+
+		// Ici this.state met toujours les fichiers dans picture:"" et non dans video:""
+		// tout simplement car on a 1 seul input avec name="picture" dessus
+
 		console.log(this.state);
 		console.log(this.props.posts)
 
@@ -78,7 +84,7 @@ class AddPost extends React.Component {
 				// execute a callback and passing it the apiResponse which is the new Post
 				console.log("FIRST STEP", apiResponse.data);
 				this.props.handlePost(apiResponse.data);
-				this.setState({ text: "", picture: "", imagePreview: "" });
+				this.setState({ text: "", file: "", imagePreview: "", videoPreview: "", textError: "" });
 			})
 			.catch((apiError) => {
 				console.log(apiError.message);
@@ -97,8 +103,9 @@ class AddPost extends React.Component {
 
 			<form onChange={this.handleChange} onSubmit={this.handleSubmit}>
 				{/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
-				<div>
-					<textarea onChange={this.handleChange} name="text" value={this.state.text} placeholder="Write something..." />
+				<div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+					<span style={{color:"red", fontWeight:"bolder"}}>{this.state.textError}</span>
+					<textarea style={{width:"50%"}} onChange={this.handleChange} name="text" value={this.state.text} placeholder="Write something..." />
 				</div>
 
 				{/* // tell React that we want to associate the <input> ref
@@ -106,7 +113,7 @@ class AddPost extends React.Component {
 				<div>
 					{/* <button style={{display:"block", width:"120px", height:"30px"}} onClick={this.clickFileInput}>Picture</button> */}
 					<img style={{ height: "35px" }} src="/images/default_user.png" alt="" onClick={this.clickFileInput} />
-					<input ref={this.myFirstRef} type='file' name="picture" id="getFile" style={{ display: "none" }} />
+					<input ref={this.myFirstRef} type='file' name="file" id="getFile" style={{ display: "none" }} />
 
 					{/* Preview of the image with a guard to display it only if there is an image chosen */}
 					{this.state.imagePreview && <p style={{ textAlign: "center" }}>

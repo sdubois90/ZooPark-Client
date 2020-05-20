@@ -32,31 +32,67 @@ class User extends Component {
 //       console.log(apiError);
 //     });
 // }
+  
+  displayUsers = (event, index) => {
+    // this.state.users.group.map()
+  }
 
   render() {
     return (
-      <div className="user-wrapper">
+      <React.Fragment>
+        
+        <div>
+          {/* GROUPS => Radio inputs for filering */}
 
-        {this.state.users.map((user, index) => (
+          <fieldset id="intputContainer" style={{ border: "none", paddingLeft: "30%" }}>
+            <legend>Show group members:</legend>
 
-          <div className="userinfo" key={index}>
+            <div>
+              <input type="radio" id="inputDog" name="inputDog" onChange={this.displayUsers} />
+              <label htmlFor="inputDog"> Dogs</label>
+            </div>
 
-            <div className="user-pic">
-             
-              <img              
-                src="/media/plant.svg"
-                alt={user.firstName}
-              />
-              </div>
+            <div>
+              <input type="radio" id="inputCat" name="inputDog" onChange={this.displayUsers} />
+              <label htmlFor="inputCat"> Cats</label>
+            </div>
 
-              <div className="usernames">
-              {user.firstName} {user.lastName}</div>
+            <div>
+              <input type="radio" id="inputHorse" name="inputDog" onChange={this.displayUsers} />
+              <label htmlFor="inputHorse"> Horses</label>
+            </div>
+
+            <div>
+              <input type="radio" id="inputSnake" name="inputDog" onChange={this.displayUsers} />
+              <label htmlFor="inputSnake"> Snakes</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <div className="user-wrapper">
+
+          {this.state.users.map((user, index) => (
+
+            <div className="userinfo" key={index}>
+
+              <div className="user-pic">
+              
+                <img              
+                  src="/media/plant.svg"
+                  alt={user.firstName}
+                />
+                </div>
+
+                <div className="usernames">
+                {user.firstName} {user.lastName}</div>
+              
             
-          
-            <div className="group">My group: {user.group}</div>
-          </div>
-        ))}
-      </div>
+              <div className="group">My group: {user.group}</div>
+            </div>
+          ))}
+        </div>
+
+      </React.Fragment>
     );
   }
 }

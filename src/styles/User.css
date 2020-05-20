@@ -1,8 +1,14 @@
 .user-wrapper{
     top: 50%;
     left: 50%;
-    width: 350px;
+    /* width: 350px; */
     padding: 10px;
+}
+
+.userinfo{
+    padding-bottom: 5px;
+    border: 1px solid gray;
+    margin: 5px 0;
 }
 
 .user-pic{
@@ -12,15 +18,7 @@
     height: 50px;
 }
 
-.userinfo{
-    padding-bottom: 5px;
-    border: 1px solid gray;
-    margin: 5px 0;
-
-}
-
 .usernames{
     display: flex;
-    flex-direction: row;
     font-weight: bold;
 }

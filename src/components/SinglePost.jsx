@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import "../styles/Post.css";
 import LikeButton from "./LikeButton";
-import axios from "axios"
+import DeleteButton from "./DeleteButton";
+import axios from "axios";
 
 export default class SinglePost extends Component {
     constructor(props) {
@@ -23,7 +24,7 @@ export default class SinglePost extends Component {
            // axios call to push the current user ID inside 
           axios
           .patch(`http://localhost:4000/api/posts/like/${this.props.post._id}`,{}, {
-              withCredentials: true,
+              withCredentials: true, // Cookies de session très importants ! Sinon il ne trouve pas req.session.currentUser
           })
           .then((apiResponse) => {
               console.log(apiResponse.data.likes);
@@ -40,7 +41,7 @@ export default class SinglePost extends Component {
                // axios call to push the current user ID inside 
               axios
               .patch(`http://localhost:4000/api/posts/dislike/${this.props.post._id}`, {},{
-                  withCredentials: true,
+                withCredentials: true, // Cookies de session très importants ! Sinon il ne trouve pas req.session.currentUser
               })
               .then((apiResponse) => {
                   console.log(apiResponse.data.likes);
@@ -50,23 +51,32 @@ export default class SinglePost extends Component {
     };
 
     render() {
-        return (
-            <div>
-                <tr className="one-post" key={this.props.index}>
+      return (
+              <tr className="one-post" key={this.props.index}>
                 <td className="content" colSpan="3">
-                  <img
+                  {this.props.post.picture && <img
                     style={{ display: "block", margin: "0 auto" }}
                     src={this.props.post.picture}
                     alt=""
-                    accept="video/*"
-                  />
+                  />}
+            {console.log(this.props.post)}
+                  {this.props.post.video && <video width="320" height="240" controls>
+                    <source src={this.props.post.video} type="video/mp4" />
+                      Your browser does not support the video tag.
+                  </video>}
+                  
                   <br />
                   {this.props.post.text}
-                  <LikeButton
                   
+                  <LikeButton
                     number={this.state.numberOfLikes}
-                    updateLikes={this.updateLikes}
-                  />
+                    updateLikes={this.updateLikes} />
+                    
+                  <DeleteButton
+                    post={this.props.post} 
+                    key={this.props.index}
+                    updatePost={this.props.updatePost} />
+                    
                   <br />
                   posted by
                   <i>
@@ -80,7 +90,6 @@ export default class SinglePost extends Component {
                 
                 </td>
               </tr>
-            </div>
         )
     }
 }
