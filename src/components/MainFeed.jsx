@@ -1,12 +1,8 @@
 import React from 'react';
-import "../styles/MainFeed.css";
+import '../styles/MainFeed.css';
 
 function MainFeed() {
-    return (
-        <div className="mainfeed">
-            
-        </div>
-    )
+	return <div className="mainfeed" />;
 }
 
-export default MainFeed
+export default MainFeed;
