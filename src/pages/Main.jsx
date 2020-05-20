@@ -91,7 +91,7 @@ class Main extends React.Component {
 
 				<div className="mainfeed">
 					<h2>Main Feed</h2>
-					<Post handlePost={this.handlePost} posts={this.state.posts} />
+					<Post handlePost={this.handlePost}  updatePost={this.updatePost} posts={this.state.posts} />
 				</div>
 
 				<div className="group-members">

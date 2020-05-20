@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import UserContext from '../Auth/UserContext';
 import apiHandler from '../../api/apiHandler';
 import axios from "axios";
-import AddCommentButton from "./AddCommentButton"
+
 
 class AddComment extends React.Component {
 	constructor(props) {
@@ -29,10 +29,15 @@ class AddComment extends React.Component {
 			// on ajoute le preview de l'image avant submitting
 			if (typeof value === 'object') {
 				const objectURL = URL.createObjectURL(event.target.files[0])
-				this.setState({ imagePreview: objectURL })
+				this.setState({ 
+					imagePreview: objectURL 
+				})
 			} else {
-				// Important to do an "if else" here (at least an "if"), otherwise if we select an image, then open it again and then just cancel instead of choosing an image, it's gonna break
-				this.setState({ imagePreview: "" })
+				// Important to do an "if else" here (at least an "if"), otherwise if we select an image, 
+				// then open it again and then just cancel instead of choosing an image, it's gonna break
+				this.setState({ 
+					imagePreview: "" 
+				})
 			}
 
 		} else {
@@ -62,21 +67,8 @@ class AddComment extends React.Component {
 		formData.append("text", this.state.text);
 		formData.append("picture", this.state.picture);
 		console.log(this.state);
-		console.log(this.props.posts)
 
-		axios
-			.post("http://localhost:4000/api/posts/", formData, {
-				withCredentials: true,
-			})
-			.then((apiResponse) => {
-				// execute a callback and passing it the apiResponse which is the new Post
-				console.log("FIRST STEP", apiResponse.data);
-				this.props.handlePost(apiResponse.data);
-				this.setState({ text: "", picture: "", imagePreview: "" });
-			})
-			.catch((apiError) => {
-				console.log(apiError.message);
-			})
+		this.props.childHandleComment(this.state)
 	}
 
 	// Function linked to my ref => triggers it with the target myFirstRef inside
@@ -89,10 +81,10 @@ class AddComment extends React.Component {
 	render() {
 		return (
 
-			<form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+			<form style={{border: "1px solid blue"}} onChange={this.handleChange} onSubmit={this.handleSubmit}>
 				{/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
-				<div>
-					<textarea onChange={this.handleChange} name="text" value={this.state.text} placeholder="Write something..." />
+				<div >
+					<textarea onChange={this.handleChange} name="text" value={this.state.text} placeholder="Write a comment..." />
 				</div>
 
 				{/* // tell React that we want to associate the <input> ref
@@ -111,7 +103,7 @@ class AddComment extends React.Component {
 				<div>
 					<input type="submit" value="Submit" />
 				</div>
-                <AddCommentButton/>
+             
 			</form>
 		);
 	}

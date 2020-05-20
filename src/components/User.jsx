@@ -33,6 +33,8 @@ class User extends Component {
 //     });
 // }
 
+
+
   render() {
     return (
       <div className="user-wrapper">
@@ -44,7 +46,7 @@ class User extends Component {
             <div className="user-pic">
              
               <img              
-                src="/media/plant.svg"
+                src={user.picture}
                 alt={user.firstName}
               />
               </div>
