@@ -37,6 +37,8 @@ class User extends Component {
     // this.state.users.group.map()
   }
 
+
+
   render() {
     return (
       <React.Fragment>
@@ -76,12 +78,12 @@ class User extends Component {
             <div className="userinfo" key={index}>
 
               <div className="user-pic">
-              
-                <img              
-                  src="/media/plant.svg"
+
+                <img
+                  src={user.picture}
                   alt={user.firstName}
                 />
-                </div>
+              </div>
 
                 <div className="usernames">
                 {user.firstName} {user.lastName}</div>

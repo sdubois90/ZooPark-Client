@@ -33,7 +33,7 @@ class CurrentUserInfo extends Component {
         <tbody>
           <tr>
             <td className="pic">
-              <img src="/media/plant.svg" alt="user_pic" />
+              <img src={this.state.currentUser.picture} alt="user_pic" />
             </td>
           </tr>
           <tr>

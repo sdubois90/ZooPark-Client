@@ -8,35 +8,44 @@ class CurrentUserEditForm extends React.Component {
   static contextType = UserContext;
 
   state = {
+    picture:this.context.user.picture,
     lastName:this.context.user.lastName,
     firstName:this.context.user.firstName,
     email:this.context.user.email,
-    description:this.context.description,
+    description:this.context.user.description,
     group:"cats",
     // userInfo:this.context.user,
   }
 
   handleChange = (event) => {
+    let value;
+    if (event.target.type === "file") {
+      value = event.target.files[0];
+      this.setState({picture: value});
+      console.log(this.state.picture)
+    } else {
+      value = event.target.value;
+    }
     console.log(event.target.name);
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: value });
   };
 
 
   handleForm = (event) => {
     event.preventDefault();
 
-    axios.patch('http://localhost:4000/api/users/' + this.context.user._id,
-    {
-      lastName:this.state.lastName, 
-      firstName:this.state.firstName, 
-      email:this.state.email,
-      description:this.state.description,
-      group:this.state.group
-    },
-    {withCredentials:true})
+    const formData = new FormData();
+		formData.append("lastName", this.state.lastName);
+    formData.append("firstName", this.state.firstName);
+    formData.append("email", this.state.email);
+    formData.append("description", this.state.description);
+    formData.append("group", this.state.group);
+    formData.append("picture", this.state.picture);
+
+    axios.patch('http://localhost:4000/api/users/' + this.context.user._id, formData, {withCredentials:true})
     .then((apiResult) => {
       console.log("updated user",apiResult);
-      this.context.setUser(apiResult.data)
+      // this.context.setUser(apiResult.data)
       this.props.hideEditForm();
       this.props.updatePost(apiResult.data);
     })
@@ -50,9 +59,11 @@ class CurrentUserEditForm extends React.Component {
     console.log("THE USER IN CONTEXT", this.context.user)
     return (
       <form onChange={this.handleChange} onSubmit={this.handleForm}>
+      <pre>{JSON.stringify(this.state, null, 2)}</pre>
         <div className="wrapper">Edit My Info
-          <img className="pic" src="/media/plant.svg" alt="user_pic" />
-
+          <img className="pic" src={this.state.picture} alt="user_pic" />
+          <label htmlFor="picture">Profile picture</label>
+				<input type="file" id="picture" name="picture" />
           <div>
             <p className="label">
               <label htmlFor="firstName">First name</label>
@@ -117,8 +128,8 @@ class CurrentUserEditForm extends React.Component {
               <select 
               name="group"
               id="group" 
-              onChange={this.handleChange}
-              value={this.context.user.group}
+              // onChange={this.handleChange}
+              defaultValue={this.context.user.group}
               >
               
                 <option value="cats">Cats</option>
