@@ -75,66 +75,65 @@ class CurrentUserInfo extends Component {
 					</div>
 				</div>
 			</div>
+		);
+	}
 
-			// {/* <div className="ui center aligned segment">
-			// 	<table className="ui celled collapsing very basic table" className="userinfo">
-			// 		<tbody>
-			// 			<tr>
-			// 				<td className="pic">
-			// 					<img src="/media/plant.svg" alt="user_pic" />
-			// 				</td>
-			// 			</tr>
-			// 			<tr>
-			// 				<td className="label">
-			// 					<h3>Name</h3>
-			// 				</td>
-			// 			</tr>
-			// 			<tr>
-			// 				<td className="contact-details">
-			// 					<h2>
-			// 						{this.state.currentUser.firstName} {this.state.currentUser.lastName}
-			// 					</h2>
-			// 				</td>
-			// 			</tr>
-			// 			<tr>
-			// 				<td className="label">
-			// 					<h3>Email</h3>
-			// 				</td>
-			// 			</tr>
-			// 			<tr>
-			// 				<td className="email">{this.state.currentUser.email}</td>
-			// 			</tr>
-			// 			<tr>
-			// 				<td className="label">
-			// 					<h3>About me</h3>
-			// 				</td>
-			// 			</tr>
-			// 			<tr>
-			// 				<td className="about">{this.state.currentUser.description}</td>
-			// 			</tr>
-			// 			<tr>
-			// 				<td className="label">
-			// 					<h3>My interests</h3>
-			// 				</td>
-			// 			</tr>
-			// 			<tr>
-			// 				<td className="interests">{this.state.currentUser.group}</td>
-			// 			</tr>
-			// 			<tr>
-			// 				<td>
-			// 					{/* <button className="edit-button" onClick={this.handleEdit}>
-			// 						Edit my profile
-			// 					</button> */}
-
-			// 					<button className="ui icon right labeled violet button" onClick={this.handleEdit}>
-			// 						<i aria-hidden="true" className="edit icon" />
-			// 						Edit my profile
-			// 					</button>
-			// 				</td>
-			// 			</tr>
-			// 		</tbody>
-			// 	</table>
-			// </div> */}
+	render() {
+		return (
+			<div className="wrapper">
+				<table className="userinfo">
+					<tbody>
+						<tr>
+							<td className="pic">
+								<img src={this.state.currentUser.picture} alt="user_pic" />
+							</td>
+						</tr>
+						<tr>
+							<td className="label">
+								<h3>Name</h3>
+							</td>
+						</tr>
+						<tr>
+							<td className="contact-details">
+								<h2>
+									{this.state.currentUser.firstName} {this.state.currentUser.lastName}
+								</h2>
+							</td>
+						</tr>
+						<tr>
+							<td className="label">
+								<h3>Email</h3>
+							</td>
+						</tr>
+						<tr>
+							<td className="email">{this.state.currentUser.email}</td>
+						</tr>
+						<tr>
+							<td className="label">
+								<h3>About me</h3>
+							</td>
+						</tr>
+						<tr>
+							<td className="about">{this.state.currentUser.description}</td>
+						</tr>
+						<tr>
+							<td className="label">
+								<h3>My interests</h3>
+							</td>
+						</tr>
+						<tr>
+							<td className="interests">{this.state.currentUser.group}</td>
+						</tr>
+						<tr>
+							<td>
+								<button className="edit-button" onClick={this.handleEdit}>
+									Edit my profile
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		);
 	}
 }

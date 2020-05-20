@@ -95,6 +95,10 @@ class Main extends React.Component {
 			// 		<h2>Group Members</h2>
 			// 		<User />
 			// 	</div>
+			// <div className="mainfeed">
+			// 	<h2>Main Feed</h2>
+			// 	<Post handlePost={this.handlePost}  updatePost={this.updatePost} posts={this.state.posts} />
+			// </div>
 
 			<div
 				className="ui horizontally padded vertically padded center aligned divided three column grid"
@@ -110,7 +114,7 @@ class Main extends React.Component {
 					<div className="eight wide column">
 						<div className="ui segment">
 							<h2>What's On Your Mind?</h2>
-							<Post handlePost={this.handlePost} posts={this.state.posts} />
+							<Post handlePost={this.handlePost} updatePost={this.updatePost} posts={this.state.posts} />
 						</div>
 					</div>
 					<div className="four wide column">

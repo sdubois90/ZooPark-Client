@@ -15,29 +15,128 @@ class CurrentUserEditForm extends React.Component {
 		// userInfo:this.context.user,
 	};
 
-	handleChange = (event) => {
-		console.log(event.target.name);
-		this.setState({ [event.target.name]: event.target.value });
+	state = {
+		picture: this.context.user.picture,
+		lastName: this.context.user.lastName,
+		firstName: this.context.user.firstName,
+		email: this.context.user.email,
+		description: this.context.user.description,
+		group: 'cats'
+		// userInfo:this.context.user,
 	};
 
+	handleChange = (event) => {
+		let value;
+		if (event.target.type === 'file') {
+			value = event.target.files[0];
+			this.setState({ picture: value });
+			console.log(this.state.picture);
+		} else {
+			value = event.target.value;
+		}
+		console.log(event.target.name);
+		this.setState({ [event.target.name]: value });
+	};
+
+	// render() {
+	// 	console.log('THE USER IN CONTEXT', this.context.user);
+	// 	return (
+	// 		<div className="ui segment">
+	// 			<form className="" onChange={this.handleChange} onSubmit={this.handleForm}>
+	// 				<div className="wrapper">
+	// 					Edit My Info
+	// 					<img className="pic" src="/media/plant.svg" alt="user_pic" />
+	// 					<div>
+	// 						{/* <p className="label"> */}
+	// 						<div class="field">
+	// 							<label htmlFor="firstName">First name</label>
+	// 						</div>
+	// 						{/* </p> */}
+	// 						<p>
+	// 							<input
+	// 								type="text"
+	// 								id="firstName"
+	// 								name="firstName"
+	// 								defaultValue={this.context.user.firstName}
+	// 							/>
+	// 						</p>
+	// 					</div>
+	// 					<div>
+	// 						<p className="label">
+	// 							<label htmlFor="lastName">Last name</label>
+	// 						</p>
+	// 						<p>
+	// 							<input
+	// 								type="text"
+	// 								id="lastName"
+	// 								name="lastName"
+	// 								defaultValue={this.context.user.lastName}
+	// 							/>
+	// 						</p>
+	// 					</div>
+	// 					<div>
+	// 						<p className="label">
+	// 							<label htmlFor="email">Email</label>
+	// 						</p>
+	// 						<p>
+	// 							<input type="text" id="email" name="email" defaultValue={this.context.user.email} />
+	// 						</p>
+	// 					</div>
+	// 					<div>
+	// 						<p className="label">
+	// 							<label htmlFor="description">About me</label>
+	// 						</p>
+	// 						<p>
+	// 							<input
+	// 								type="text"
+	// 								id="description"
+	// 								name="description"
+	// 								defaultValue={this.context.user.description}
+	// 							/>
+	// 						</p>
+	// 					</div>
+	// 					<div>
+	// 						<p className="label">
+	// 							<label htmlFor="group">My interests</label>
+	// 						</p>
+	// 						<p>
+	// 							<select
+	// 								name="group"
+	// 								id="group"
+	// 								onChange={this.handleChange}
+	// 								value={this.context.user.group}
+	// 							>
+	// 								<option value="cats">Cats</option>
+	// 								<option value="dogs">Dogs</option>
+	// 								<option value="horses">Horses</option>
+	// 								<option value="snakes">Snakes</option>
+	// 							</select>
+	// 						</p>
+	// 					</div>
+	// 					<button className="edit-button" className="ui primary button">
+	// 						Submit
+	// 					</button>
+	// 				</div>
+	// 			</form>
+	// 		</div>
+	// 	);
+	// }
 	handleForm = (event) => {
 		event.preventDefault();
 
+		const formData = new FormData();
+		formData.append('lastName', this.state.lastName);
+		formData.append('firstName', this.state.firstName);
+		formData.append('email', this.state.email);
+		formData.append('description', this.state.description);
+		formData.append('group', this.state.group);
+		formData.append('picture', this.state.picture);
+
 		axios
-			.patch(
-				'http://localhost:4000/api/users/' + this.context.user._id,
-				{
-					lastName: this.state.lastName,
-					firstName: this.state.firstName,
-					email: this.state.email,
-					description: this.state.description,
-					group: this.state.group
-				},
-				{ withCredentials: true }
-			)
+			.patch('http://localhost:4000/api/users/' + this.context.user._id, formData, { withCredentials: true })
 			.then((apiResult) => {
 				console.log('updated user', apiResult);
-				this.context.setUser(apiResult.data);
+				// this.context.setUser(apiResult.data)
 				this.props.hideEditForm();
 				this.props.updatePost(apiResult.data);
 			})
@@ -49,84 +148,81 @@ class CurrentUserEditForm extends React.Component {
 	render() {
 		console.log('THE USER IN CONTEXT', this.context.user);
 		return (
-			<div className="ui segment">
-				<form className="" onChange={this.handleChange} onSubmit={this.handleForm}>
-					<div className="wrapper">
-						Edit My Info
-						<img className="pic" src="/media/plant.svg" alt="user_pic" />
-						<div>
-							{/* <p className="label"> */}
-							<div class="field">
-								<label htmlFor="firstName">First name</label>
-							</div>
-							{/* </p> */}
-							<p>
-								<input
-									type="text"
-									id="firstName"
-									name="firstName"
-									defaultValue={this.context.user.firstName}
-								/>
-							</p>
-						</div>
-						<div>
-							<p className="label">
-								<label htmlFor="lastName">Last name</label>
-							</p>
-							<p>
-								<input
-									type="text"
-									id="lastName"
-									name="lastName"
-									defaultValue={this.context.user.lastName}
-								/>
-							</p>
-						</div>
-						<div>
-							<p className="label">
-								<label htmlFor="email">Email</label>
-							</p>
-							<p>
-								<input type="text" id="email" name="email" defaultValue={this.context.user.email} />
-							</p>
-						</div>
-						<div>
-							<p className="label">
-								<label htmlFor="description">About me</label>
-							</p>
-							<p>
-								<input
-									type="text"
-									id="description"
-									name="description"
-									defaultValue={this.context.user.description}
-								/>
-							</p>
-						</div>
-						<div>
-							<p className="label">
-								<label htmlFor="group">My interests</label>
-							</p>
-							<p>
-								<select
-									name="group"
-									id="group"
-									onChange={this.handleChange}
-									value={this.context.user.group}
-								>
-									<option value="cats">Cats</option>
-									<option value="dogs">Dogs</option>
-									<option value="horses">Horses</option>
-									<option value="snakes">Snakes</option>
-								</select>
-							</p>
-						</div>
-						<button className="edit-button" className="ui primary button">
-							Submit
-						</button>
+			<form onChange={this.handleChange} onSubmit={this.handleForm}>
+				<pre>{JSON.stringify(this.state, null, 2)}</pre>
+				<div className="wrapper">
+					Edit My Info
+					<img className="pic" src={this.state.picture} alt="user_pic" />
+					<label htmlFor="picture">Profile picture</label>
+					<input type="file" id="picture" name="picture" />
+					<div>
+						<p className="label">
+							<label htmlFor="firstName">First name</label>
+						</p>
+						<p>
+							<input
+								type="text"
+								id="firstName"
+								name="firstName"
+								defaultValue={this.context.user.firstName}
+							/>
+						</p>
 					</div>
-				</form>
-			</div>
+					<div>
+						<p className="label">
+							<label htmlFor="lastName">Last name</label>
+						</p>
+						<p>
+							<input
+								type="text"
+								id="lastName"
+								name="lastName"
+								defaultValue={this.context.user.lastName}
+							/>
+						</p>
+					</div>
+					<div>
+						<p className="label">
+							<label htmlFor="email">Email</label>
+						</p>
+						<p>
+							<input type="text" id="email" name="email" defaultValue={this.context.user.email} />
+						</p>
+					</div>
+					<div>
+						<p className="label">
+							<label htmlFor="description">About me</label>
+						</p>
+						<p>
+							<input
+								type="text"
+								id="description"
+								name="description"
+								defaultValue={this.context.user.description}
+							/>
+						</p>
+					</div>
+					<div>
+						<p className="label">
+							<label htmlFor="group">My interests</label>
+						</p>
+						<p>
+							<select
+								name="group"
+								id="group"
+								// onChange={this.handleChange}
+								defaultValue={this.context.user.group}
+							>
+								<option value="cats">Cats</option>
+								<option value="dogs">Dogs</option>
+								<option value="horses">Horses</option>
+								<option value="snakes">Snakes</option>
+							</select>
+						</p>
+					</div>
+					<button className="edit-button">Submit</button>
+				</div>
+			</form>
 		);
 	}
 }
