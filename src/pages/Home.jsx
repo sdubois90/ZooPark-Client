@@ -9,10 +9,10 @@ const Home = (props) => {
 	return (
 		<div className="home-container" style={{ height: 'calc(100vh - 70px)' }}>
 			<div class="ui center aligned container">
-				<p id="main-title">We are ZooPark</p>
-				<p id="sub-title">A social network for dogs, cats and their human pets</p>
+				<h1 style={{ fontSize: '6em' }}>We are ZooPark</h1>
+				<h2 style={{ fontSize: '1.8em' }}>A social network for dogs, cats and their human pets</h2>
 
-				<button class="ui primary button">
+				<button class="ui basic blue button" style={{ marginTop: '2.5em' }}>
 					<NavLink to="/signup">Get Started</NavLink>
 				</button>
 			</div>

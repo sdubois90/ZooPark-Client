@@ -42,7 +42,7 @@ class FormSignup extends Component {
 		return (
 			<div className="home-container" style={{ height: 'calc(100vh - 70px)' }}>
 				<div class="ui center aligned container">
-					<p id="sub-title">Howdy stranger! How are you today?</p>
+					<h1>Howdy stranger! How are you today?</h1>
 				</div>
 				<form class="ui form text container segment" onChange={this.handleChange} onSubmit={this.handleSubmit}>
 					<div class="required field">

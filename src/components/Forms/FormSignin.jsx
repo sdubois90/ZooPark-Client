@@ -43,7 +43,7 @@ class FormSignin extends Component {
 		return (
 			<div className="home-container" style={{ height: 'calc(100vh - 70px)' }}>
 				<div class="ui center aligned container">
-					<p id="sub-title">Sorry, I can't! My human and I have plans...</p>
+					<h1>Sorry, I can't! My human and I have plans...</h1>
 				</div>
 				<form class="ui form text container segment" onChange={this.handleChange} onSubmit={this.handleSubmit}>
 					<div class="required field">
