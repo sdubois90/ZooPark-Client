@@ -6,15 +6,6 @@ import axios from 'axios';
 class CurrentUserEditForm extends React.Component {
 	static contextType = UserContext;
 
-	state = {
-		lastName: this.context.user.lastName,
-		firstName: this.context.user.firstName,
-		email: this.context.user.email,
-		description: this.context.description,
-		group: 'cats'
-		// userInfo:this.context.user,
-	};
-
   state = {
     picture: this.context.user.picture,
     picturePreview: "",
