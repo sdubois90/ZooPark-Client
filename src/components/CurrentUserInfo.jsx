@@ -30,109 +30,54 @@ class CurrentUserInfo extends Component {
 				<div role="list" className="ui divided relaxed list">
 					<div>
 						<img
-							src="/images/profile-image.jpg"
+							src={this.state.currentUser.picture}
 							alt="user_pic"
-							className="ui medium rounded centered image"
+							className="ui medium circular centered image"
+							style={{ marginBottom: '1em' }}
 						/>
 					</div>
 					<div role="listitem" className="item">
 						<i aria-hidden="true" className="smile outline large icon middle aligned" />
 						<div className="content">
-							<a className="header">NAME</a>
-							<a className="description">
-								{' '}
+							<span className="ui small blue header">NAME</span>
+							<span className="description">
 								{this.state.currentUser.firstName} {this.state.currentUser.lastName}
-							</a>
+							</span>
 						</div>
 					</div>
 
 					<div role="listitem" className="item">
 						<i aria-hidden="true" className="mail large icon middle aligned" />
 						<div className="content">
-							<a className="header">EMAIL</a>
-							<a className="description">{this.state.currentUser.email}</a>
+							<span className="ui small blue header">EMAIL</span>
+							<span className="description">{this.state.currentUser.email}</span>
 						</div>
 					</div>
 					<div role="listitem" className="item">
 						<i aria-hidden="true" className="hand point right outline large icon middle aligned" />
 						<div className="content">
-							<a className="header">ABOUT</a>
-							<a className="description">{this.state.currentUser.description}</a>
+							<span className="ui small blue header">ABOUT</span>
+							<span className="description">{this.state.currentUser.description}</span>
 						</div>
 					</div>
 					<div role="listitem" className="item">
 						<i aria-hidden="true" className="group large icon middle aligned" />
 						<div className="content">
-							<a className="header">MY INTERESTS</a>
-							<a className="description">{this.state.currentUser.group}</a>
+							<span className="ui small blue header">MY INTERESTS</span>
+							<span className="description">{this.state.currentUser.group}</span>
 						</div>
 					</div>
 					<div role="listitem" className="item">
-						<button className="ui icon right labeled violet button" onClick={this.handleEdit}>
+						<button
+							className="ui icon right labeled violet button"
+							style={{ marginTop: '1em' }}
+							onClick={this.handleEdit}
+						>
 							<i aria-hidden="true" className="edit icon" />
-							Edit my profile
+							EDIT MY PROFILE
 						</button>
 					</div>
 				</div>
-			</div>
-		);
-	}
-
-	render() {
-		return (
-			<div className="wrapper">
-				<table className="userinfo">
-					<tbody>
-						<tr>
-							<td className="pic">
-								<img src={this.state.currentUser.picture} alt="user_pic" />
-							</td>
-						</tr>
-						<tr>
-							<td className="label">
-								<h3>Name</h3>
-							</td>
-						</tr>
-						<tr>
-							<td className="contact-details">
-								<h2>
-									{this.state.currentUser.firstName} {this.state.currentUser.lastName}
-								</h2>
-							</td>
-						</tr>
-						<tr>
-							<td className="label">
-								<h3>Email</h3>
-							</td>
-						</tr>
-						<tr>
-							<td className="email">{this.state.currentUser.email}</td>
-						</tr>
-						<tr>
-							<td className="label">
-								<h3>About me</h3>
-							</td>
-						</tr>
-						<tr>
-							<td className="about">{this.state.currentUser.description}</td>
-						</tr>
-						<tr>
-							<td className="label">
-								<h3>My interests</h3>
-							</td>
-						</tr>
-						<tr>
-							<td className="interests">{this.state.currentUser.group}</td>
-						</tr>
-						<tr>
-							<td>
-								<button className="edit-button" onClick={this.handleEdit}>
-									Edit my profile
-								</button>
-							</td>
-						</tr>
-					</tbody>
-				</table>
 			</div>
 		);
 	}
