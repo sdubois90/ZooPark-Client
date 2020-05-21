@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import UserContext from '../Auth/UserContext';
-import apiHandler from '../../api/apiHandler';
-import axios from "axios";
+import React from 'react';
+// import { withRouter } from 'react-router-dom';
+// import UserContext from '../Auth/UserContext';
+// import apiHandler from '../../api/apiHandler';
+// import axios from "axios";
 
 
 class AddComment extends React.Component {
@@ -29,14 +29,14 @@ class AddComment extends React.Component {
 			// on ajoute le preview de l'image avant submitting
 			if (typeof value === 'object') {
 				const objectURL = URL.createObjectURL(event.target.files[0])
-				this.setState({ 
-					imagePreview: objectURL 
+				this.setState({
+					imagePreview: objectURL
 				})
 			} else {
 				// Important to do an "if else" here (at least an "if"), otherwise if we select an image, 
 				// then open it again and then just cancel instead of choosing an image, it's gonna break
-				this.setState({ 
-					imagePreview: "" 
+				this.setState({
+					imagePreview: ""
 				})
 			}
 
@@ -78,10 +78,16 @@ class AddComment extends React.Component {
 		this.myFirstRef.current.click();
 	}
 
+	componentDidUpdate(prevProps) {
+		if (this.props.commentWasSuccessful !== prevProps.commentWasSuccessful && this.props.commentWasSuccessful) {
+			this.setState({ text: '' });
+		}
+	}
+
 	render() {
 		return (
 
-			<form style={{border: "1px solid blue"}} onChange={this.handleChange} onSubmit={this.handleSubmit}>
+			<form style={{ border: "1px solid blue" }} onChange={this.handleChange} onSubmit={this.handleSubmit}>
 				{/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
 				<div >
 					<textarea onChange={this.handleChange} name="text" value={this.state.text} placeholder="Write a comment..." />
@@ -103,7 +109,7 @@ class AddComment extends React.Component {
 				<div>
 					<input type="submit" value="Submit" />
 				</div>
-             
+
 			</form>
 		);
 	}

@@ -9,7 +9,7 @@ class DeleteButton extends React.Component {
     }
 
     handleDelete = (index) => {
-        axios.delete(`http://localhost:4000/api/posts/${index}`, { withCredentials: true })
+        axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/posts/${index}`, { withCredentials: true })
             .then((apiRes) => {
                 console.log(apiRes.data)
                 this.props.updatePost();

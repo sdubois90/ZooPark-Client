@@ -15,7 +15,7 @@ class Profile extends Component {
     componentDidMount() {
         console.log(this.props)
         axios
-            .get(`http://localhost:4000/api/users/${this.state.currentUser.id}`, {withCredentials: true})
+            .get(`${process.env.REACT_APP_BACKEND_URL}/api/users/${this.state.currentUser.id}`, {withCredentials: true})
             .then((apiResponse) => {
                 console.log(apiResponse);
                 this.setState({ currentUser: apiResponse.data });
