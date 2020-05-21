@@ -30,7 +30,7 @@ class AddPost extends React.Component {
 			// on ajoute le preview de l'image avant submitting
 			if (typeof value === 'object') {
 				const objectURL = URL.createObjectURL(event.target.files[0])
-				// Check si c'ets une image/qqchose ou video/qqchose, puis remet l'autre type de preview à 0
+				// Check si c'est une image/qqchose ou video/qqchose, puis remet l'autre type de preview à 0
 				if (value && value['type'].split('/')[0] === 'image') {
 					this.setState({ imagePreview: objectURL, videoPreview: "" })
 				} else {
@@ -39,7 +39,7 @@ class AddPost extends React.Component {
 
 			} else {
 				// Important to do an "if else" here (at least an "if"), otherwise if we select an image, then open it again and then just cancel instead of choosing an image, it's gonna break
-				this.setState({ imagePreview: "" })
+				this.setState({ imagePreview: "", videoPreview: "" })
 			}
 
 		} else {
@@ -103,9 +103,9 @@ class AddPost extends React.Component {
 
 			<form onChange={this.handleChange} onSubmit={this.handleSubmit}>
 				{/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
-				<div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
-					<span style={{color:"red", fontWeight:"bolder"}}>{this.state.textError}</span>
-					<textarea style={{width:"50%"}} onChange={this.handleChange} name="text" value={this.state.text} placeholder="Write something..." />
+				<div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+					<span style={{ color: "red", fontWeight: "bolder" }}>{this.state.textError}</span>
+					<textarea style={{ width: "50%" }} onChange={this.handleChange} name="text" value={this.state.text} placeholder="Write something..." />
 				</div>
 
 				{/* // tell React that we want to associate the <input> ref
