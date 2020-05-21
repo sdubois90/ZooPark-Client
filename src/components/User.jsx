@@ -46,9 +46,9 @@ class User extends Component {
         <div>
           {/* GROUPS => Radio inputs for filering */}
 
-          <fieldset id="intputContainer" style={{ border: "none", paddingLeft: "30%" }}>
+          <fieldset id="intputContainer" style={{ border: "none", display:"flex"}}>
             <legend>Show group members:</legend>
-
+            
             <div>
               <input type="radio" id="inputDog" name="inputDog" onChange={this.displayUsers} />
               <label htmlFor="inputDog"> Dogs</label>

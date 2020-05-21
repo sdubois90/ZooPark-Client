@@ -15,7 +15,7 @@ class Main extends React.Component {
 		}
 	};
 
-	// static contextType = UserContext;
+	static contextType = UserContext;
 
 
 	componentDidMount() {
@@ -85,27 +85,27 @@ class Main extends React.Component {
 		return (
 
 				// <div class="ui grid" className="main-container">
-				// 	{/* <pre>{JSON.stringify(this.context.user, null, 2)}</pre> */}
 				// 	<div class="column" className="profile">
 				// 		<h2>Current user info</h2>
 				// 		<CurrentUserFrame updatePost={this.updatePost} />
 				// 	</div>
 				// </div>
-	
+				
 				// <div class="column" className="mainfeed">
-			 	// 	<h2>Main Feed</h2>
+				// 	<h2>Main Feed</h2>
 				// 	<Post handlePost={this.handlePost} updatePost={this.updatePost} posts={this.state.posts} />
+				// </div>
+				
+				// <div class="column" className="group-members">
+				// 	<h2>Group Members</h2>
+				// 	<User />
 			 	// </div>
-
-			 	// <div class="column" className="group-members">
-			 	// 	<h2>Group Members</h2>
-			 	// 	<User />
-			 	// </div>
-
+				 
 			<div
 				className="ui horizontally padded vertically padded center aligned divided three column grid"
 				style={{ backgroundColor: '#fed7da' }}
 			>
+				 {/* <pre>{JSON.stringify(this.context.user, null, 2)}</pre> */}
 				<div className="stretched row">
 					<div className="four wide column">
 						<div className="ui segment">
@@ -116,6 +116,7 @@ class Main extends React.Component {
 					<div className="eight wide column">
 						<div className="ui segment">
 							<h2>What's On Your Mind?</h2>
+							{console.log(this.state.posts)}
 							<Post handlePost={this.handlePost} updatePost={this.updatePost} posts={this.state.posts} />
 						</div>
 					</div>

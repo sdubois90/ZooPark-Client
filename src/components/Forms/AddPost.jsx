@@ -76,7 +76,8 @@ class AddPost extends React.Component {
 			});
 	}
 	// Function linked to my ref => triggers it with the target myFirstRef inside
-	clickFileInput() {
+	clickFileInput(event) {
+		event.preventDefault();
 		// Explicitly clicks the file input using the raw DOM API
 		// Note: we're accessing "current" to get the DOM node
 		this.myFirstRef.current.click();
@@ -85,10 +86,10 @@ class AddPost extends React.Component {
 		return (
 			<form onChange={this.handleChange} onSubmit={this.handleSubmit}>
 				{/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
-				<div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-					<span style={{ color: "red", fontWeight: "bolder" }}>{this.state.textError}</span>
-					<textarea style={{ width: "50%" }} onChange={this.handleChange} name="text" value={this.state.text} placeholder="Write something..." />
-				</div>
+				{/* <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}> */}
+					{/* <span style={{ color: "red", fontWeight: "bolder" }}>{this.state.textError}</span> */}
+					{/* <textarea style={{ width: "50%" }} onChange={this.handleChange} name="text" value={this.state.text} placeholder="Write something..." /> */}
+				{/* </div> */}
 				{/* <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}> */}
 				<div>
 					<span style={{ color: 'red', fontWeight: 'bolder' }}>{this.state.textError}</span>
@@ -122,7 +123,7 @@ class AddPost extends React.Component {
 							<i aria-hidden="true" className="image icon" />
 						</button>
 
-						<button className="ui violet button">
+						<button className="ui violet button" onClick={this.clickFileInput}>
 							<i aria-hidden="true" className="video icon" />
 						</button>
 
@@ -132,12 +133,12 @@ class AddPost extends React.Component {
 						</button>
 					</div>
 
-					<img
+					{/* <img
 						style={{ height: '35px' }}
 						src="/images/default_user.png"
 						alt=""
 						onClick={this.clickFileInput}
-					/>
+					/> */}
 					<input ref={this.myFirstRef} type="file" name="picture" id="getFile" style={{ display: 'none' }} />
 					{/* Preview of the image with a guard to display it only if there is an image chosen */}
 					{this.state.imagePreview && (
