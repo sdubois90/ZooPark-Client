@@ -78,6 +78,7 @@ class AddComment extends React.Component {
 		this.myFirstRef.current.click();
 	}
 
+	// Voir explications dans SinglePost.jsx on line 69
 	componentDidUpdate(prevProps) {
 		if (this.props.commentWasSuccessful !== prevProps.commentWasSuccessful && this.props.commentWasSuccessful) {
 			this.setState({ text: '' });

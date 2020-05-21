@@ -68,9 +68,14 @@ export default class SinglePost extends Component {
   addComments = (commentToCreate) => {
 // On crée un state "success: false", si le comment est posté() alors on le passe à true
 // On a la possibilité de passer une callback dans un setState(), donc on lui passe le updatePost()
-// Afin de recevoir tout le rendu de la page, puis ensuite ? remettre le state à false
+// Afin de recevoir tout le nouveau rendu de la page, puis ensuite ? (on ne sait pas si ça attend) remettre le state à false
     
-// On passe this.state.success as a props to the child AddComment.jsx (the one who triggers this fu)
+// Les props s'envoient dès qu'on render() donc dès qu'on change le state
+    
+// On passe this.state.success as a props to the child AddComment.jsx (the one who triggers this function)
+// L'enfant a un componentDidUpdate() qui se lance dès que this.props.success !== prevProps.success && props.success === true, et qui efface le contenu du champ
+// En gros = dès que state.success passe à true => on efface le contenu du champ !    
+
     axios
       .post(`${process.env.REACT_APP_BACKEND_URL}/api/${this.props.post._id}/comments`, commentToCreate, {
         withCredentials: true,
