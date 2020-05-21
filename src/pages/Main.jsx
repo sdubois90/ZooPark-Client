@@ -6,7 +6,7 @@ import CurrentUserInfo from '../components/CurrentUserInfo.jsx';
 import '../styles/Main.css';
 import axios from 'axios';
 import CurrentUserFrame from '../components/CurrentUserFrame';
-
+import UserContext from "../components/Auth/UserContext";
 class Main extends React.Component {
 	constructor(props) {
 		super(props);
@@ -15,7 +15,7 @@ class Main extends React.Component {
 		}
 	};
 
-
+	// static contextType = UserContext;
 
 
 	componentDidMount() {
@@ -84,6 +84,7 @@ class Main extends React.Component {
 	render() {
 		return (
 			<div className="main-container">
+				{/* <pre>{JSON.stringify(this.context.user, null, 2)}</pre> */}
 				<div className="profile">
 					<h2>Current user info</h2>
 					<CurrentUserFrame updatePost={this.updatePost} />
