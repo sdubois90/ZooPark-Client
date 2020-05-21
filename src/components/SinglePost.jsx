@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../styles/Post.css";
 import LikeButton from "./LikeButton";
+import DeleteButton from "./DeleteButton";
 import axios from "axios";
 import Comments from "./Comments";
 import AddComment from "./Forms/AddComment";
@@ -77,30 +78,38 @@ export default class SinglePost extends Component {
       })
       .catch(err => console.log(err))
   };
-  
-  render() {
-    return (
-      <div>
-      <table>
-      <tbody>
+
+
+    render() {
+      return (
         <tr className="one-post" key={this.props.index}>
           <td className="content" colSpan="3">
-            <img
+            {this.props.post.picture && <img
               style={{ display: "block", margin: "0 auto" }}
               src={this.props.post.picture}
               alt=""
-              accept="video/*"
-            />
+            />}
+            {console.log(this.props.post)}
+            {this.props.post.video && <video width="320" height="240" controls>
+              <source src={this.props.post.video} type="video/mp4" />
+                      Your browser does not support the video tag.
+                  </video>}
+                  
             <br />
             {this.props.post.text}
+                  
             <LikeButton
               number={this.state.numberOfLikes}
-              updateLikes={this.updateLikes}
-            />
+              updateLikes={this.updateLikes} />
+                    
+            <DeleteButton
+              post={this.props.post}
+              key={this.props.index}
+              updatePost={this.props.updatePost} />
+                    
 
-
-            <Comments 
-            comments = {this.props.post.comments}
+            <Comments
+              comments={this.props.post.comments}
             />
 
             <AddComment
@@ -109,21 +118,20 @@ export default class SinglePost extends Component {
             <button>Comment</button>
 
 
+
             <br />
-            posted by
-            <i>
-              <b> {this.props.post.user.firstName}</b>
+                  posted by
+                  <i>
+              <b>{this.props.post.user.firstName}</b>
             </i>
             <img
               className="post-user-picture"
               src={this.props.post.user.picture}
               alt=""
             />
+                
           </td>
         </tr>
-        </tbody>
-        </table>
-      </div>
-    );
-  }
+      )
+    }
 }

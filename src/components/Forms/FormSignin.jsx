@@ -42,20 +42,24 @@ class FormSignin extends Component {
 	render() {
 		return (
 			<div className="home-container" style={{ height: 'calc(100vh - 70px)' }}>
-				<div class="ui center aligned container">
-					<p id="sub-title">Sorry, I can't! My human and I have plans...</p>
+				<div className="ui center aligned container">
+					<h1>Sorry, I can't! My human and I have plans...</h1>
 				</div>
-				<form class="ui form text container segment" onChange={this.handleChange} onSubmit={this.handleSubmit}>
-					<div class="required field">
+				<form
+					className="ui form text container segment"
+					onChange={this.handleChange}
+					onSubmit={this.handleSubmit}
+				>
+					<div className="required field">
 						<label htmlFor="email">Email</label>
 						<input type="email" name="email" placeholder="meow@schmoe.com" />
 					</div>
-					<div class="required field">
+					<div className="required field">
 						<label htmlFor="password">Password</label>
 						<input type="password" name="password" placeholder="Shhh...don't tell it to anyone!" />
 					</div>
 
-					<button class="ui button" type="submit">
+					<button className="ui button" type="submit">
 						Submit
 					</button>
 				</form>

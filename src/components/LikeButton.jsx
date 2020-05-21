@@ -37,9 +37,9 @@ class LikeButton extends React.Component {
   render(){
 
     return(
-      <div>
+      <React.Fragment>
         <button onClick={this.props.updateLikes}>{this.props.number} Likes</button>
-      </div>
+      </React.Fragment>
     );
   }
 }
