@@ -1,12 +1,14 @@
 import React from 'react';
 import Post from '../components/Post';
 import User from '../components/User';
-import AddPost from '../components/Forms/AddPost';
-import CurrentUserInfo from '../components/CurrentUserInfo.jsx';
+// import AddPost from '../components/Forms/AddPost';
+// import CurrentUserInfo from '../components/CurrentUserInfo.jsx';
 import '../styles/Main.css';
-import axios from 'axios';
+// import axios from 'axios';
 import CurrentUserFrame from '../components/CurrentUserFrame';
 import UserContext from "../components/Auth/UserContext";
+import apiHandler from "../api/apiHandler";
+
 class Main extends React.Component {
 	constructor(props) {
 		super(props);
@@ -19,29 +21,32 @@ class Main extends React.Component {
 
 
 	componentDidMount() {
-		axios
-			.get('http://localhost:4000/api/posts', {
-				withCredentials: true
-			})
+		apiHandler
+			.getItems()
 			.then((apiResponse) => {
 				console.log(apiResponse);
 				// NOT WORKING, see on "Post.jsx" for the answer = >Reverse the order of the posts when first loading the page
 				// const rev = apiResponse.data.reverse()
 				// this.setState({ posts: rev });
-				this.setState({ posts: apiResponse.data });
+				this.setState({ posts: apiResponse });
 			})
 			.catch((apiError) => {
 				console.log(apiError);
 			});
-		//   apiHandler
-		//     .getItems()
-		//     .then((apiResponse) => {
-		//       console.log(apiResponse.data)
-		//       this.setState({ posts: apiResponse.data })
-		//     })
-		//     .catch((apiError) => {
-		//       console.log(apiError)
-		//     })
+		// axios
+		// 	.get('http://localhost:4000/api/posts', {
+		// 		withCredentials: true
+		// 	})
+		// 	.then((apiResponse) => {
+		// 		console.log(apiResponse);
+		// 		// NOT WORKING, see on "Post.jsx" for the answer = >Reverse the order of the posts when first loading the page
+		// 		// const rev = apiResponse.data.reverse()
+		// 		// this.setState({ posts: rev });
+		// 		this.setState({ posts: apiResponse.data });
+		// 	})
+		// 	.catch((apiError) => {
+		// 		console.log(apiError);
+		// 	});
 	}
 
 	// updatePost = (updatedUser) => {
@@ -57,13 +62,11 @@ class Main extends React.Component {
 	// 	this.setState({ posts: updatedUsers });
 
 	updatePost = () => {
-		axios
-			.get('http://localhost:4000/api/posts', {
-				withCredentials: true
-			})
+		apiHandler
+			.getItems()
 			.then((apiResponse) => {
 				console.log(apiResponse);
-				this.setState({ posts: apiResponse.data });
+				this.setState({ posts: apiResponse });
 			})
 			.catch((apiError) => {
 				console.log(apiError);
@@ -116,18 +119,16 @@ class Main extends React.Component {
 					<div className="eight wide column">
 						<div className="ui segment">
 							<h2>What's On Your Mind?</h2>
-							{console.log(this.state.posts)}
+							{/* {console.log(this.state.posts)} */}
 							<Post handlePost={this.handlePost} updatePost={this.updatePost} posts={this.state.posts} />
 						</div>
 					</div>
 					<div className="four wide column">
 						<div className="ui segment">
 							<h2>Group Members</h2>
-							<div className="ui segment">
+							<div>
 								<User />
 							</div>
-							<div className="ui segment">2</div>
-							<div className="ui segment">3</div>
 						</div>
 					</div>
 				</div>
