@@ -28,7 +28,7 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                <pre>{JSON.stringify(this.state, null, 2)}</pre>
+                {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
                 <p>{this.state.currentUser._id}</p>
                 <p>{this.state.currentUser.firstName}</p>
                 <p>{this.state.currentUser.lastName}</p>

@@ -122,7 +122,7 @@ export default class SinglePost extends Component {
             <br />
                   posted by
                   <i>
-              <b>{this.props.post.user.firstName}</b>
+              <b>&nbsp;{this.props.post.user.firstName}</b>
             </i>
             <img
               className="post-user-picture"

@@ -132,15 +132,16 @@ class CurrentUserEditForm extends React.Component {
 		formData.append('group', this.state.group);
     formData.append('picture', this.state.picture);
     
-    this.context.user.picture = this.state.picturePreview
-    this.context.user.lastName = this.state.lastName
-    this.context.user.firstName = this.state.firstName
-    this.context.user.email = this.state.email
-    this.context.user.description = this.state.description
+    // this.context.user.picture = this.state.picturePreview
+    // this.context.user.lastName = this.state.lastName
+    // this.context.user.firstName = this.state.firstName
+    // this.context.user.email = this.state.email
+    // this.context.user.description = this.state.description
 
     axios.patch('http://localhost:4000/api/users/' + this.context.user._id, formData, { withCredentials: true })
       .then((apiResult) => {
         console.log("updated user", apiResult);
+        this.context.setUser(apiResult.data)
         this.props.hideEditForm();
         this.props.updatePost(apiResult.data);
       })
@@ -154,7 +155,7 @@ class CurrentUserEditForm extends React.Component {
     console.log("THE USER IN CONTEXT", this.context.user)
     return (
       <form onChange={this.handleChange} onSubmit={this.handleForm}>
-        <pre>{JSON.stringify(this.state, null, 2)}</pre>
+        {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
         <div className="wrapper">Edit My Info
 
           {!this.state.picturePreview && <img className="pic" src={this.state.picture} alt="user_pic" />}

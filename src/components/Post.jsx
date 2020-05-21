@@ -25,6 +25,8 @@ class Post extends Component {
 	render() {
 		return (
 			<div style={{ width: '100%', padding: '15px' }}>
+				{/* {console.log(this.props.posts)}
+				<pre>{JSON.stringify(this.props.posts, null, 2)}</pre> */}
 				<AddPost handlePost={this.props.handlePost} posts={this.props.posts} />
 				<table
 					style={{
