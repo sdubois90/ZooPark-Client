@@ -22,30 +22,32 @@ const NavMain = (props) => {
 	return (
 		<nav className="NavMain">
 			<NavLink exact to="/">
-				<i className="logo" class="home big black icon" />
+				<i className="logo" className="home big black icon" />
 			</NavLink>
 			<ul className="nav-list">
 				{context.isLoggedIn && (
 					<React.Fragment>
 						<li>
-							<NavLink to="/profile" class="ui black button">
-								{context.user && context.user.email}
-							</NavLink>
+							<button className="ui black button">
+								<NavLink to="/profile">{context.user && context.user.email}</NavLink>
+							</button>
 						</li>
 						<li>
-							<p onClick={handleLogout}>Logout</p>
+							<p onClick={handleLogout} className="ui black button">
+								Logout
+							</p>
 						</li>
 					</React.Fragment>
 				)}
 				{!context.isLoggedIn && (
 					<React.Fragment>
 						<li>
-							<button class="ui black button">
+							<button className="ui black button">
 								<NavLink to="/signin">Log in</NavLink>
 							</button>
 						</li>
 						<li>
-							<button class="ui black button">
+							<button className="ui black button">
 								<NavLink to="/signup">Create account</NavLink>
 							</button>
 						</li>
