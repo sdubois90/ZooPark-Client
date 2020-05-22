@@ -3,12 +3,9 @@ import React, { Component } from 'react';
 import '../styles/Post.css';
 import AddPost from './Forms/AddPost';
 import SinglePost from './SinglePost';
-
 // import LikeButton from './LikeButton';
-
 class Post extends Component {
 	//   componentDidMount() {
-
 	//     axios
 	//     .get("http://localhost:4000/api/posts/", {
 	//       withCredentials: true,
@@ -21,21 +18,16 @@ class Post extends Component {
 	//         console.log(apiError);
 	//     })
 	// }
-
 	render() {
 		return (
-			<div style={{ width: '100%', padding: '15px' }}>
-				{/* {console.log(this.props.posts)}
-				<pre>{JSON.stringify(this.props.posts, null, 2)}</pre> */}
-				<AddPost handlePost={this.props.handlePost} posts={this.props.posts} />
-				<table
-					style={{
-						borderCollapse: 'separate',
-						borderSpacing: '15px 15px',
-						width: '100%'
-					}}
-				>
-					<tbody>
+			<div className="ui container">
+				<div className="comment">
+					<div className="content">
+						<AddPost handlePost={this.props.handlePost} posts={this.props.posts} />
+					</div>
+				</div>
+				<div className="ui container">
+					<div>
 						{/* Reversing the state with a shallow copy first otherwise it acts weird,
                 as reverse() directly mutates the array */}
 						{[ ...this.props.posts ]
@@ -43,11 +35,10 @@ class Post extends Component {
 							.map((post, index) => (
 								<SinglePost updatePost={this.props.updatePost} post={post} index={index} key={index} />
 							))}
-					</tbody>
-				</table>
+					</div>
+				</div>
 			</div>
 		);
 	}
 }
-
 export default Post;

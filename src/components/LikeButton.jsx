@@ -1,49 +1,49 @@
 import React from 'react';
 
 class LikeButton extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			// numberOfLikes: 0,
+			// updated: false
+		};
+	}
 
-  constructor(props){
+	// updateLikes = () => {
 
-    super(props);
-    this.state = {
-        // numberOfLikes: 0,
-        // updated: false
-    };
+	//   if(!this.state.updated) {
+	//     this.setState((prevState, props) => {
+	//       return {
+	//           numberOfLikes: prevState.numberOfLikes + 1,
+	//         updated: true
+	//       };
+	//     });
 
-  }
+	//   } else {
 
-  // updateLikes = () => {
+	//     this.setState((prevState, props) => {
+	//       return {
+	//           numberOfLikes: prevState.numberOfLikes - 1,
+	//         updated: false
+	//       };
+	//     });
 
-  //   if(!this.state.updated) {
-  //     this.setState((prevState, props) => {
-  //       return {
-  //           numberOfLikes: prevState.numberOfLikes + 1,
-  //         updated: true
-  //       };
-  //     });
+	//   }
+	// }
 
-  //   } else {
-
-  //     this.setState((prevState, props) => {
-  //       return {
-  //           numberOfLikes: prevState.numberOfLikes - 1,
-  //         updated: false
-  //       };
-  //     });
-
-  //   }
-  // }
-
-  render(){
-
-    return(
-      <React.Fragment>
-        <button onClick={this.props.updateLikes}>{this.props.number} Likes</button>
-      </React.Fragment>
-    );
-  }
+	render() {
+		return (
+			<React.Fragment>
+				{/* <div className="ui icon left floated buttons"> */}
+				<button className="ui icon left floated right labeled violet button" onClick={this.props.updateLikes}>
+					{this.props.number}
+					<i aria-hidden="true" className="heart icon" />
+				</button>
+				{/* </div> */}
+			</React.Fragment>
+		);
+	}
 }
-
 
 // class LikeButton extends Component {
 // constructor(props) {
@@ -67,6 +67,4 @@ class LikeButton extends React.Component {
 //     }
 // }
 
-export default LikeButton
-
-
+export default LikeButton;
