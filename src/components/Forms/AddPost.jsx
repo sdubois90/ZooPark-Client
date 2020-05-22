@@ -2,7 +2,7 @@ import React from 'react';
 // import { withRouter } from 'react-router-dom';
 // import UserContext from '../Auth/UserContext';
 import apiHandler from '../../api/apiHandler';
-import axios from 'axios';
+// import axios from 'axios';
 
 class AddPost extends React.Component {
 	constructor(props) {
@@ -20,7 +20,25 @@ class AddPost extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
+
 	handleChange(event) {
+		// Clearing the input if value inside, si on fait: if (event.target.text) ça ne marche pas car c'est undefined, c'est event.target.name === "name"
+		// et bizarrement si on fait if (this.state.text) alors il se remet à 0 seulement la 2e fois qu'on entre du texte (2e lettre)
+		// Chercher la raison ?
+		// if (this.state.text) {
+		// 	this.setState({ textError: "" })
+		// }
+
+		// Les 2 solutions sont donc :
+
+		// if (event.target.text !== "") {
+		// 	this.setState({ textError: "" })
+		// }
+
+		// ou bien :
+		if (event.target.name === "text") {
+			this.setState({ textError:""})
+		}
 		let value;
 		if (event.target.type === 'file') {
 			value = event.target.files[0];
@@ -55,7 +73,7 @@ class AddPost extends React.Component {
 		//  })
 		if (!this.state.text) {
 			// alert("Required: Please add some text")
-			this.setState({ textError: 'Please insert some text' });
+			this.setState({ textError: 'Please add some text' });
 		}
 		const formData = new FormData();
 		formData.append('text', this.state.text);
@@ -106,7 +124,7 @@ class AddPost extends React.Component {
 				{/* </div> */}
 				{/* <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}> */}
 				<div>
-					<span style={{ color: 'red', fontWeight: 'bolder' }}>{this.state.textError}</span>
+					{this.state.textError && <span style={{ color: 'red', fontWeight: 'bolder' }}>{this.state.textError}</span>}
 					<form className="ui form" style={{ marginBottom: '0.5em' }}>
 						<textarea
 							onChange={this.handleChange}
