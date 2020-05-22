@@ -147,7 +147,7 @@ export default class SinglePost extends Component {
 				<div className="content">
 					<div>
 						<Comments comments={this.props.post.comments} />
-						<AddComment childHandleComment={this.addComments} />
+						<AddComment childHandleComment={this.addComments} commentWasSuccessful={this.state.success} />
 
 						{/* <div>
 						<LikeButton number={this.state.numberOfLikes} updateLikes={this.updateLikes} />
