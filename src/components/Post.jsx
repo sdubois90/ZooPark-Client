@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React, { Component } from 'react';
 // import axios from 'axios';
 import '../styles/Post.css';
@@ -5,49 +6,62 @@ import AddPost from './Forms/AddPost';
 import SinglePost from './SinglePost';
 
 // import LikeButton from './LikeButton';
+=======
+import React, { Component } from "react";
+import axios from "axios";
+import "../styles/Post.css";
+import AddPost from "./Forms/AddPost";
+import SinglePost from "./SinglePost";
+
+import LikeButton from "./LikeButton";
+>>>>>>> Stashed changes
 
 class Post extends Component {
-	//   componentDidMount() {
+  //   componentDidMount() {
 
-	//     axios
-	//     .get("http://localhost:4000/api/posts/", {
-	//       withCredentials: true,
-	//     })
-	//     .then((apiResponse) => {
-	//         console.log(apiResponse);
-	//         this.setState({ posts: apiResponse.data});
-	//     })
-	//     .catch((apiError) => {
-	//         console.log(apiError);
-	//     })
-	// }
+  //     axios
+  //     .get("http://localhost:4000/api/posts/", {
+  //       withCredentials: true,
+  //     })
+  //     .then((apiResponse) => {
+  //         console.log(apiResponse);
+  //         this.setState({ posts: apiResponse.data});
+  //     })
+  //     .catch((apiError) => {
+  //         console.log(apiError);
+  //     })
+  // }
 
-	render() {
-		return (
-			<div style={{ width: '100%', padding: '15px' }}>
-				{/* {console.log(this.props.posts)}
-				<pre>{JSON.stringify(this.props.posts, null, 2)}</pre> */}
-				<AddPost handlePost={this.props.handlePost} posts={this.props.posts} />
-				<table
-					style={{
-						borderCollapse: 'separate',
-						borderSpacing: '15px 15px',
-						width: '100%'
-					}}
-				>
-					<tbody>
-						{/* Reversing the state with a shallow copy first otherwise it acts weird,
+  render() {
+    return (
+      <div className="ui comments">
+        <div className="comment">
+          <div className="content">
+            <AddPost
+              handlePost={this.props.handlePost}
+              posts={this.props.posts}
+            />
+          </div>
+        </div>
+
+        <div className="ui container">
+          <div>
+            {/* Reversing the state with a shallow copy first otherwise it acts weird,
                 as reverse() directly mutates the array */}
-						{[ ...this.props.posts ]
-							.reverse()
-							.map((post, index) => (
-								<SinglePost updatePost={this.props.updatePost} post={post} index={index} key={index} />
-							))}
-					</tbody>
-				</table>
-			</div>
-		);
-	}
+
+            {[...this.props.posts].reverse().map((post, index) => (
+              <SinglePost
+                updatePost={this.props.updatePost}
+                post={post}
+                index={index}
+                key={index}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Post;
