@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import UserContext from '../Auth/UserContext';
+import React from 'react';
+// import { withRouter } from 'react-router-dom';
+// import UserContext from '../Auth/UserContext';
 import apiHandler from '../../api/apiHandler';
 import axios from 'axios';
+
 class AddPost extends React.Component {
 	constructor(props) {
 		super(props);
@@ -61,19 +62,32 @@ class AddPost extends React.Component {
 		formData.append('picture', this.state.picture);
 		console.log(this.state);
 		console.log(this.props.posts);
-		axios
-			.post('http://localhost:4000/api/posts/', formData, {
-				withCredentials: true
-			})
+
+		apiHandler
+			.createItems(formData)
 			.then((apiResponse) => {
 				// execute a callback and passing it the apiResponse which is the new Post
-				console.log('FIRST STEP', apiResponse.data);
-				this.props.handlePost(apiResponse.data);
+				console.log('FIRST STEP', apiResponse);
+				this.props.handlePost(apiResponse);
 				this.setState({ text: '', picture: '', imagePreview: '', videoPreview: '', textError: '' });
 			})
 			.catch((apiError) => {
 				console.log(apiError.message);
 			});
+
+		// axios
+		// 	.post('http://localhost:4000/api/posts/', formData, {
+		// 		withCredentials: true
+		// 	})
+		// 	.then((apiResponse) => {
+		// 		// execute a callback and passing it the apiResponse which is the new Post
+		// 		console.log('FIRST STEP', apiResponse.data);
+		// 		this.props.handlePost(apiResponse.data);
+		// 		this.setState({ text: '', picture: '', imagePreview: '', videoPreview: '', textError: '' });
+		// 	})
+		// 	.catch((apiError) => {
+		// 		console.log(apiError.message);
+		// 	});
 	}
 	// Function linked to my ref => triggers it with the target myFirstRef inside
 	clickFileInput(event) {

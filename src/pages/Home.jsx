@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import AddPost from '../components/Forms/AddPost';
+// import AddPost from '../components/Forms/AddPost';
 
 import '../styles/Home.css';
 

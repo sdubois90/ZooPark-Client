@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import '../styles/Post.css';
 import AddPost from './Forms/AddPost';
 import SinglePost from './SinglePost';
 
-import LikeButton from './LikeButton';
+// import LikeButton from './LikeButton';
 
 class Post extends Component {
 	//   componentDidMount() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import AddComment from './Forms/AddComment';
-import axios from 'axios';
+// import AddComment from "./Forms/AddComment";
+// import axios from "axios";
 
 export class Comments extends Component {
 	render() {

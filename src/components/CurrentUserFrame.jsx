@@ -1,7 +1,7 @@
 import React from 'react';
 import CurrentUserInfo from './CurrentUserInfo';
 import CurrentUserEditForm from './Forms/CurrentUserEditForm';
-import axios from 'axios';
+// import axios from 'axios';
 
 class CurrentUserFrame extends React.Component {
 	state = {

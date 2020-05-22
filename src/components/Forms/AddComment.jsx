@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import UserContext from '../Auth/UserContext';
-import apiHandler from '../../api/apiHandler';
-import axios from 'axios';
+import React from 'react';
+// import { withRouter } from 'react-router-dom';
+// import UserContext from '../Auth/UserContext';
+// import apiHandler from '../../api/apiHandler';
+// import axios from "axios";
 
 class AddComment extends React.Component {
 	constructor(props) {
@@ -74,6 +74,13 @@ class AddComment extends React.Component {
 		// Explicitly clicks the file input using the raw DOM API
 		// Note: we're accessing "current" to get the DOM node
 		this.myFirstRef.current.click();
+	}
+
+	// Voir explications dans SinglePost.jsx on line 69
+	componentDidUpdate(prevProps) {
+		if (this.props.commentWasSuccessful !== prevProps.commentWasSuccessful && this.props.commentWasSuccessful) {
+			this.setState({ text: '' });
+		}
 	}
 
 	render() {

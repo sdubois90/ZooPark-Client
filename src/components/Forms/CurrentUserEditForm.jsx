@@ -48,8 +48,16 @@ class CurrentUserEditForm extends React.Component {
 		formData.append('group', this.state.group);
 		formData.append('picture', this.state.picture);
 
+		// this.context.user.picture = this.state.picturePreview
+		// this.context.user.lastName = this.state.lastName
+		// this.context.user.firstName = this.state.firstName
+		// this.context.user.email = this.state.email
+		// this.context.user.description = this.state.description
+
 		axios
-			.patch('http://localhost:4000/api/users/' + this.context.user._id, formData, { withCredentials: true })
+			.patch(`${process.env.REACT_APP_BACKEND_URL}/api/users/` + this.context.user._id, formData, {
+				withCredentials: true
+			})
 			.then((apiResult) => {
 				console.log('updated user', apiResult);
 				this.context.setUser(apiResult.data);
@@ -60,7 +68,6 @@ class CurrentUserEditForm extends React.Component {
 				console.log(apiError.message);
 			});
 	};
-
 	render() {
 		console.log('THE USER IN CONTEXT', this.context.user);
 		return (

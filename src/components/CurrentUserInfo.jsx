@@ -9,7 +9,7 @@ class CurrentUserInfo extends Component {
 
 	componentDidMount() {
 		axios
-			.get('http://localhost:4000/api/users/' + this.state.id, {
+			.get(`${process.env.REACT_APP_BACKEND_URL}/api/users/` + this.state.id, {
 				withCredentials: true
 			})
 			.then((apiResponse) => {

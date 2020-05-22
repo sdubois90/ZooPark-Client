@@ -12,7 +12,8 @@ export default class SinglePost extends Component {
 		this.state = {
 			numberOfLikes: this.props.post.likes.length,
 			liked: false,
-			comments: []
+			comments: [],
+			success: false
 		};
 	}
 
@@ -27,7 +28,7 @@ export default class SinglePost extends Component {
 			// axios call to push the current user ID inside
 			axios
 				.patch(
-					`http://localhost:4000/api/posts/like/${this.props.post._id}`,
+					`${process.env.REACT_APP_BACKEND_URL}/api/posts/like/${this.props.post._id}`,
 					{},
 					{
 						withCredentials: true
@@ -49,7 +50,7 @@ export default class SinglePost extends Component {
 			// axios call to push the current user ID inside
 			axios
 				.patch(
-					`http://localhost:4000/api/posts/dislike/${this.props.post._id}`,
+					`${process.env.REACT_APP_BACKEND_URL}/api/posts/dislike/${this.props.post._id}`,
 					{},
 					{
 						withCredentials: true
@@ -65,18 +66,31 @@ export default class SinglePost extends Component {
 	};
 
 	addComments = (commentToCreate) => {
+		// On crée un state "success: false", si le comment est posté() alors on le passe à true
+		// On a la possibilité de passer une callback dans un setState(), donc on lui passe le updatePost()
+		// Afin de recevoir tout le nouveau rendu de la page, puis ensuite ? (on ne sait pas si ça attend) remettre le state à false
+
+		// Les props s'envoient dès qu'on render() donc dès qu'on change le state
+
+		// On passe this.state.success as a props to the child AddComment.jsx (the one who triggers this function)
+		// L'enfant a un componentDidUpdate() qui se lance dès que this.props.success !== prevProps.success && props.success === true, et qui efface le contenu du champ
+		// En gros = dès que state.success passe à true => on efface le contenu du champ !
+
 		axios
-			.post(`http://localhost:4000/api/${this.props.post._id}/comments`, commentToCreate, {
+			.post(`${process.env.REACT_APP_BACKEND_URL}/api/${this.props.post._id}/comments`, commentToCreate, {
 				withCredentials: true
 			})
 			.then((apiResponse) => {
 				console.log(apiResponse.data);
-				this.props.updatePost();
-				// this.setState({
-				//   comments: apiResponse.data.comments,
-				// });
+				this.setState({ success: true }, () => {
+					this.props.updatePost();
+					this.setState({ success: false });
+				});
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => {
+				console.log(err);
+				this.setState({ success: false });
+			});
 	};
 
 	render() {
