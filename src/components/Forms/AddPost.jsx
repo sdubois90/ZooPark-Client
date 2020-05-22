@@ -25,7 +25,7 @@ class AddPost extends React.Component {
 			value = event.target.files[0];
 			// on ajoute le preview de l'image avant submitting
 			if (typeof value === 'object') {
-				const objectURL = URL.createObjectURL(event.target.files[0])
+				const objectURL = URL.createObjectURL(event.target.files[0]);
 				// Check si c'est une image/qqchose ou video/qqchose, puis remet l'autre type de preview à 0
 				if (value && value['type'].split('/')[0] === 'image') {
 					this.setState({ imagePreview: objectURL, videoPreview: '' });
@@ -34,7 +34,7 @@ class AddPost extends React.Component {
 				}
 			} else {
 				// Important to do an "if else" here (at least an "if"), otherwise if we select an image, then open it again and then just cancel instead of choosing an image, it's gonna break
-				this.setState({ imagePreview: "", videoPreview: "" })
+				this.setState({ imagePreview: '', videoPreview: '' });
 			}
 		} else {
 			value = event.target.value;
@@ -87,8 +87,8 @@ class AddPost extends React.Component {
 			<form onChange={this.handleChange} onSubmit={this.handleSubmit}>
 				{/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
 				{/* <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}> */}
-					{/* <span style={{ color: "red", fontWeight: "bolder" }}>{this.state.textError}</span> */}
-					{/* <textarea style={{ width: "50%" }} onChange={this.handleChange} name="text" value={this.state.text} placeholder="Write something..." /> */}
+				{/* <span style={{ color: "red", fontWeight: "bolder" }}>{this.state.textError}</span> */}
+				{/* <textarea style={{ width: "50%" }} onChange={this.handleChange} name="text" value={this.state.text} placeholder="Write something..." /> */}
 				{/* </div> */}
 				{/* <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}> */}
 				<div>
@@ -99,7 +99,7 @@ class AddPost extends React.Component {
 							name="text"
 							value={this.state.text}
 							placeholder="Write something..."
-							rows="3"
+							rows="5"
 						/>
 					</form>
 
@@ -111,27 +111,26 @@ class AddPost extends React.Component {
 						placeholder="Write something..."
 					/> */}
 				</div>
+				<div className="ui icon centered floated buttons">
+					<button className="ui violet button" onClick={this.clickFileInput}>
+						<i aria-hidden="true" className="image icon" />
+					</button>
+
+					<button className="ui violet button" onClick={this.clickFileInput}>
+						<i aria-hidden="true" className="video icon" />
+					</button>
+
+					<button type="submit" className="ui icon right labeled violet button">
+						<i aria-hidden="true" className="world icon" />
+						POST
+					</button>
+				</div>
 				{/* // tell React that we want to associate the <input> ref
         // with the `textInput` that we created in the constructor */}
-				<div>
+				<div style={{ marginTop: '0.5em' }}>
 					{/* <button style={{ display: 'block', width: '120px', height: '30px' }} onClick={this.clickFileInput}>
 						Upload
 					</button> */}
-
-					<div className="ui icon left floated buttons">
-						<button className="ui violet button" onClick={this.clickFileInput}>
-							<i aria-hidden="true" className="image icon" />
-						</button>
-
-						<button className="ui violet button" onClick={this.clickFileInput}>
-							<i aria-hidden="true" className="video icon" />
-						</button>
-
-						<button type="submit" className="ui icon right labeled violet button">
-							<i aria-hidden="true" className="world icon" />
-							Post
-						</button>
-					</div>
 
 					{/* <img
 						style={{ height: '35px' }}
@@ -142,22 +141,25 @@ class AddPost extends React.Component {
 					<input ref={this.myFirstRef} type="file" name="picture" id="getFile" style={{ display: 'none' }} />
 					{/* Preview of the image with a guard to display it only if there is an image chosen */}
 					{this.state.imagePreview && (
-						<p style={{ textAlign: 'center' }}>
-							Preview:{' '}
-							<img
-								className="ui bordered medium rounded centered image"
-								// style={{ height: '100px', display: 'block', margin: '0 auto' }}
-								src={this.state.imagePreview}
-								alt=""
-							/>
+						<p>
+							<div className="ui centered card">
+								<img src={this.state.imagePreview} alt="" className="ui image" />
+								<div className="content">
+									<div className="header">Preview</div>
+								</div>
+							</div>
 						</p>
 					)}
 					{this.state.videoPreview && (
-						<p style={{ textAlign: 'center' }}>
-							Preview:{' '}
-							<video style={{ height: '200px', display: 'block', margin: '0 auto' }} controls>
-								<source src={this.state.videoPreview} />
-							</video>
+						<p>
+							<div className="ui centered card">
+								<video style={{ height: '200px', display: 'block', margin: '0 auto' }} controls>
+									<source src={this.state.videoPreview} />
+								</video>
+								<div className="content">
+									<div className="header">Preview</div>
+								</div>
+							</div>
 						</p>
 					)}
 				</div>

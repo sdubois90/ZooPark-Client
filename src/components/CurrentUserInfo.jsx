@@ -70,7 +70,7 @@ class CurrentUserInfo extends Component {
 					<div role="listitem" className="item">
 						<button
 							className="ui icon right labeled violet button"
-							style={{ marginTop: '1em' }}
+							style={{ marginTop: '0.25em' }}
 							onClick={this.handleEdit}
 						>
 							<i aria-hidden="true" className="edit icon" />

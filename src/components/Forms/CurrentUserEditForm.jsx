@@ -166,7 +166,7 @@ class CurrentUserEditForm extends React.Component {
 								</select>
 							</p>
 						</div>
-						<button className="ui violet world icon right labeled button" style={{ marginTop: '1em' }}>
+						<button className="ui violet world icon right labeled button" style={{ marginTop: '0.5em' }}>
 							SUBMIT
 							<i aria-hidden="true" className="right world icon" />
 						</button>
