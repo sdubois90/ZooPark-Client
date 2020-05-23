@@ -25,7 +25,7 @@ const NavMain = (props) => {
 				<i className="logo" className="home big black icon" />
 			</NavLink>
 			<ul className="nav-list">
-				<li style={{ position: "absolute", width:"10vmin", left:"47.5%" }}>
+				<li className="panda">
 					<img src="/images/panda.png" alt="" />
 				</li>
 				{context.isLoggedIn && (
