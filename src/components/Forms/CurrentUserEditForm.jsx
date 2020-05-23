@@ -78,7 +78,7 @@ class CurrentUserEditForm extends React.Component {
 						{/* Edit My Info */}
 						{!this.state.picturePreview && (
 							<img
-								className="pic"
+								// className="pic"
 								src={this.state.picture}
 								alt="user_pic"
 								className="ui medium circular centered image"

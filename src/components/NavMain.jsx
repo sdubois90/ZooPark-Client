@@ -20,9 +20,9 @@ const NavMain = (props) => {
 	}
 
 	return (
-		<nav className="NavMain" style={{ position: "relative" }}>
+		<nav className="NavMain">
 			<NavLink exact to="/">
-				<i className="logo" className="home big black icon" />
+				<i className="logo home big black icon" />
 			</NavLink>
 			<ul className="nav-list">
 				<li className="panda">
