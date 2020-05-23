@@ -20,11 +20,14 @@ const NavMain = (props) => {
 	}
 
 	return (
-		<nav className="NavMain">
+		<nav className="NavMain" style={{ position: "relative" }}>
 			<NavLink exact to="/">
 				<i className="logo" className="home big black icon" />
 			</NavLink>
 			<ul className="nav-list">
+				<li style={{ position: "absolute", width:"10vmin", left:"47.5%" }}>
+					<img src="/images/panda.png" alt="" />
+				</li>
 				{context.isLoggedIn && (
 					<React.Fragment>
 						<li>
