@@ -41,6 +41,7 @@ class Profile extends Component {
                 <p>{this.state.currentUser.email}</p>
 
                 {/* Ajout 
+                <p>{this.context.user._id}</p>
                 <p>{this.context.user.firstName}</p>
                 <p>{this.context.user.lastName}</p>
                 <p>{this.context.user.email}</p>
